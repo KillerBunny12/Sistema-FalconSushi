@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D25790AA-195D-4074-B53C-5C8C49039F02}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FalconSushi</RootNamespace>
+    <AssemblyName>FalconSushi</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\FalconSushi.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FalconSushiDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet10.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet10.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet11.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet7.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet8.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet8.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FalconSushiDataSet9.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FalconSushiDataSet9.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmCrearPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmCrearPedido.Designer.cs">
+      <DependentUpon>FrmCrearPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmGestioAgregarSushi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmGestioAgregarSushi.Designer.cs">
+      <DependentUpon>FrmGestioAgregarSushi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionAgregarIngrediente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionAgregarIngrediente.Designer.cs">
+      <DependentUpon>FrmGestionAgregarIngrediente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionCliente.Designer.cs">
+      <DependentUpon>FrmGestionCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionIngredientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionIngredientes.Designer.cs">
+      <DependentUpon>FrmGestionIngredientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionPedidoAgregarClientr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionPedidoAgregarClientr.Designer.cs">
+      <DependentUpon>FrmGestionPedidoAgregarClientr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionPedidoAgregarPromocion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionPedidoAgregarPromocion.Designer.cs">
+      <DependentUpon>FrmGestionPedidoAgregarPromocion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionPedidoAgregarSushi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionPedidoAgregarSushi.Designer.cs">
+      <DependentUpon>FrmGestionPedidoAgregarSushi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionPromocion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionPromocion.Designer.cs">
+      <DependentUpon>FrmGestionPromocion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionSushi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionSushi.Designer.cs">
+      <DependentUpon>FrmGestionSushi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmGestionUsuario.Designer.cs">
+      <DependentUpon>FrmGestionUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmPedidos.Designer.cs">
+      <DependentUpon>FrmPedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\Herramientas.cs" />
+    <Compile Include="Locale\ObjetosGlobales.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\FrmCrearPedido.resx">
+      <DependentUpon>FrmCrearPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmGestioAgregarSushi.resx">
+      <DependentUpon>FrmGestioAgregarSushi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmGestionAgregarIngrediente.resx">
+      <DependentUpon>FrmGestionAgregarIngrediente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmGestionCliente.resx">
+      <DependentUpon>FrmGestionCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmGestionIngredientes.resx">
+      <DependentUpon>FrmGestionIngredientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmGestionPedidoAgregarClientr.resx">
+      <DependentUpon>FrmGestionPedidoAgregarClientr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmGestionPedidoAgregarPromocion.resx">
+      <DependentUpon>FrmGestionPedidoAgregarPromocion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmGestionPedidoAgregarSushi.resx">
+      <DependentUpon>FrmGestionPedidoAgregarSushi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmGestionPromocion.resx">
+      <DependentUpon>FrmGestionPromocion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmGestionSushi.resx">
+      <DependentUpon>FrmGestionSushi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmGestionUsuario.resx">
+      <DependentUpon>FrmGestionUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmPedidos.resx">
+      <DependentUpon>FrmPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="FalconSushiDataSet.xsc">
+      <DependentUpon>FalconSushiDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet.xss">
+      <DependentUpon>FalconSushiDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet1.xsc">
+      <DependentUpon>FalconSushiDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet1.xss">
+      <DependentUpon>FalconSushiDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet10.xsc">
+      <DependentUpon>FalconSushiDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet10.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet10.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet10.xss">
+      <DependentUpon>FalconSushiDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet11.xsc">
+      <DependentUpon>FalconSushiDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet11.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet11.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet11.xss">
+      <DependentUpon>FalconSushiDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet2.xsc">
+      <DependentUpon>FalconSushiDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet2.xss">
+      <DependentUpon>FalconSushiDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet3.xsc">
+      <DependentUpon>FalconSushiDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet3.xss">
+      <DependentUpon>FalconSushiDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet4.xsc">
+      <DependentUpon>FalconSushiDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet4.xss">
+      <DependentUpon>FalconSushiDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet5.xsc">
+      <DependentUpon>FalconSushiDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet5.xss">
+      <DependentUpon>FalconSushiDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet6.xsc">
+      <DependentUpon>FalconSushiDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet6.xss">
+      <DependentUpon>FalconSushiDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet7.xsc">
+      <DependentUpon>FalconSushiDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet7.xss">
+      <DependentUpon>FalconSushiDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet8.xsc">
+      <DependentUpon>FalconSushiDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet8.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet8.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet8.xss">
+      <DependentUpon>FalconSushiDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet9.xsc">
+      <DependentUpon>FalconSushiDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="FalconSushiDataSet9.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FalconSushiDataSet9.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FalconSushiDataSet9.xss">
+      <DependentUpon>FalconSushiDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logica\Logica.csproj">
+      <Project>{1c441318-e5db-423f-8740-061fad9f977e}</Project>
+      <Name>Logica</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FalconSushiLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\FalconSushi.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
