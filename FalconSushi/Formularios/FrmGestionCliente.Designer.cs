@@ -36,7 +36,6 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
-            this.CbActivo = new System.Windows.Forms.CheckBox();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.TxtCodigo = new System.Windows.Forms.TextBox();
@@ -54,9 +53,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtTelefono = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.LblUsuarioRegistra = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPClienteListarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // TxtBuscar
@@ -138,18 +141,6 @@
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = false;
             this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
-            // 
-            // CbActivo
-            // 
-            this.CbActivo.AutoSize = true;
-            this.CbActivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbActivo.Location = new System.Drawing.Point(308, 343);
-            this.CbActivo.Margin = new System.Windows.Forms.Padding(2);
-            this.CbActivo.Name = "CbActivo";
-            this.CbActivo.Size = new System.Drawing.Size(62, 17);
-            this.CbActivo.TabIndex = 52;
-            this.CbActivo.Text = "Activo";
-            this.CbActivo.UseVisualStyleBackColor = true;
             // 
             // TxtNombre
             // 
@@ -300,11 +291,44 @@
             this.label3.TabIndex = 61;
             this.label3.Text = "Telefono";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(496, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.TabIndex = 64;
+            this.label5.Text = "Buscar";
+            // 
+            // LblUsuarioRegistra
+            // 
+            this.LblUsuarioRegistra.AutoSize = true;
+            this.LblUsuarioRegistra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsuarioRegistra.Location = new System.Drawing.Point(11, 9);
+            this.LblUsuarioRegistra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblUsuarioRegistra.Name = "LblUsuarioRegistra";
+            this.LblUsuarioRegistra.Size = new System.Drawing.Size(99, 26);
+            this.LblUsuarioRegistra.TabIndex = 63;
+            this.LblUsuarioRegistra.Text = "Clientes";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FalconSushi.Properties.Resources.FalconSushiLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(770, 392);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(94, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 77;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmGestionCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 482);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.LblUsuarioRegistra);
             this.Controls.Add(this.TxtTelefono);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TxtDireccion);
@@ -315,7 +339,6 @@
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnEditar);
             this.Controls.Add(this.BtnAgregar);
-            this.Controls.Add(this.CbActivo);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.TxtCodigo);
@@ -333,6 +356,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPClienteListarBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -346,7 +370,6 @@
         private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.Button BtnEditar;
         private System.Windows.Forms.Button BtnAgregar;
-        private System.Windows.Forms.CheckBox CbActivo;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TxtCodigo;
@@ -364,5 +387,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtTelefono;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label LblUsuarioRegistra;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

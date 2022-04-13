@@ -46,16 +46,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.CbActivo = new System.Windows.Forms.CheckBox();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.LblUsuarioRegistra = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPUsuarioListarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // DgvLista
@@ -201,18 +204,6 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Nombre";
             // 
-            // CbActivo
-            // 
-            this.CbActivo.AutoSize = true;
-            this.CbActivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbActivo.Location = new System.Drawing.Point(314, 328);
-            this.CbActivo.Margin = new System.Windows.Forms.Padding(2);
-            this.CbActivo.Name = "CbActivo";
-            this.CbActivo.Size = new System.Drawing.Size(62, 17);
-            this.CbActivo.TabIndex = 17;
-            this.CbActivo.Text = "Activo";
-            this.CbActivo.UseVisualStyleBackColor = true;
-            // 
             // BtnCancelar
             // 
             this.BtnCancelar.BackColor = System.Drawing.Color.MediumOrchid;
@@ -293,18 +284,50 @@
             this.TxtBuscar.TabIndex = 28;
             this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(493, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.TabIndex = 38;
+            this.label5.Text = "Buscar";
+            // 
+            // LblUsuarioRegistra
+            // 
+            this.LblUsuarioRegistra.AutoSize = true;
+            this.LblUsuarioRegistra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsuarioRegistra.Location = new System.Drawing.Point(11, 9);
+            this.LblUsuarioRegistra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblUsuarioRegistra.Name = "LblUsuarioRegistra";
+            this.LblUsuarioRegistra.Size = new System.Drawing.Size(106, 26);
+            this.LblUsuarioRegistra.TabIndex = 37;
+            this.LblUsuarioRegistra.Text = "Usuarios";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FalconSushi.Properties.Resources.FalconSushiLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(780, 377);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(94, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 50;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmGestionUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 468);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.LblUsuarioRegistra);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnEditar);
             this.Controls.Add(this.BtnAgregar);
-            this.Controls.Add(this.CbActivo);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.TxtPass);
@@ -326,6 +349,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPUsuarioListarBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -346,7 +370,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox CbActivo;
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Button BtnEliminar;
@@ -356,5 +379,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn GNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn GUser;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label LblUsuarioRegistra;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

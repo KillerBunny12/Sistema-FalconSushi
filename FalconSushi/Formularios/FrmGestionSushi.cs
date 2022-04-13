@@ -55,7 +55,7 @@ namespace FalconSushi.Formularios
             TxtPrecio.Clear();
 
             TxtComentarios.Clear();
-            CbActivo.Checked = true;
+            
             DTListaIngredientes.Clear();
             DgvLista.ClearSelection();
             DatosAgregar.Clear();
@@ -168,13 +168,26 @@ namespace FalconSushi.Formularios
                     //Si la compra fue exitosa se muestra un mensaje de exito y se procede a la creacion del reporte
                     //Se crea un documento de reporte y se imprime con todos los valores registrados
                     MessageBox.Show("Sushi agregado correctamente", "Exito!", MessageBoxButtons.OK);
+                    Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha agregado el sushi de nombre: " + SushiLocal.Nombre + " y precio: " + SushiLocal.Precio);
+
+                    if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                    {
+                        Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                    }
+
+
+
                     Limpiar();
-                    LlenarLista(this.CbActivo.Checked);
+                    LlenarLista(this.CbVerActivos.Checked);
                 }
                 else
                 {
                     MessageBox.Show("Ha ocurrido un error al intentar crear el sushi", "Error gestion sushi", MessageBoxButtons.OK);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Rellene todos los campos requeridos", "Verificacion datos", MessageBoxButtons.OK);
             }
 
 
@@ -293,7 +306,7 @@ namespace FalconSushi.Formularios
 
             DgvIngredientes.DataSource = DTListaIngredientes;
 
-            CbActivo.Checked = SushiLocal.Activo;
+            
 
             ActivarEditarEliminar();
         }
@@ -374,6 +387,13 @@ namespace FalconSushi.Formularios
                         //Si el procedimiento de editar al usuario fue correcto se muestra un mensaje al usuario y se limpian los campos
                         //De otra forma se muestran los respectivos mensajes de error
                         MessageBox.Show("Sushi editado correctamente", "Exito!", MessageBoxButtons.OK);
+                        Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha editado el sushi de ID " + MiSushi.SushiID);
+
+                        if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                        {
+                            Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                        }
+
                         Limpiar();
                         LlenarLista(CbVerActivos.Checked);
                         ActivarAgregar();
@@ -465,6 +485,13 @@ namespace FalconSushi.Formularios
                         if (MiSushi.Activar())
                         {
                             MessageBox.Show("Sushi activado correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha activado el sushi de ID " + MiSushi.SushiID);
+
+                            if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
                             ActivarAgregar();
@@ -482,6 +509,13 @@ namespace FalconSushi.Formularios
                         if (MiSushi.Desactivar())
                         {
                             MessageBox.Show("Sushi desactivado correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha desactivado el sushi de ID " + MiSushi.SushiID);
+
+                            if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
                             ActivarAgregar();

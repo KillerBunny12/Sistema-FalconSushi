@@ -51,7 +51,7 @@ namespace FalconSushi.Formularios
             TxtPrecio.Clear();
             TxtDescripcion.Clear();
             TxtComentarios.Clear();
-            CbActivo.Checked = true;
+            
             DTListaSushi.Clear();
             DgvLista.ClearSelection();
             DatosAgregar.Clear();
@@ -165,13 +165,24 @@ namespace FalconSushi.Formularios
                     //Si la compra fue exitosa se muestra un mensaje de exito y se procede a la creacion del reporte
                     //Se crea un documento de reporte y se imprime con todos los valores registrados
                     MessageBox.Show("Promocion agregada correctamente", "Exito!", MessageBoxButtons.OK);
+                    Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha agregado la promocion de nombre: " + PromocionLocal.Nombre + " y precio: " + PromocionLocal.Precio);
+
+                    if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                    {
+                        Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                    }
+
                     Limpiar();
-                    LlenarLista(this.CbActivo.Checked);
+                    LlenarLista(this.CbVerActivos.Checked);
                 }
                 else
                 {
                     MessageBox.Show("Ha ocurrido un error al intentar crear la promocion", "Error gestion promocion", MessageBoxButtons.OK);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Rellene todos los campos requeridos", "Verificacion datos", MessageBoxButtons.OK);
             }
         }
 
@@ -290,7 +301,7 @@ namespace FalconSushi.Formularios
 
             DgvSushi.DataSource = DTListaSushi;
 
-            CbActivo.Checked = PromocionLocal.Activo;
+        
 
             ActivarEditarEliminar();
         }
@@ -372,6 +383,13 @@ namespace FalconSushi.Formularios
                         //Si el procedimiento de editar al usuario fue correcto se muestra un mensaje al usuario y se limpian los campos
                         //De otra forma se muestran los respectivos mensajes de error
                         MessageBox.Show("Promocion editada correctamente", "Exito!", MessageBoxButtons.OK);
+                        Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha editado la promocion de ID " + MiPromocion.PromocionID);
+
+                        if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                        {
+                            Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                        }
+
                         Limpiar();
                         LlenarLista(CbVerActivos.Checked);
                         ActivarAgregar();
@@ -465,6 +483,13 @@ namespace FalconSushi.Formularios
                         if (MiPromocion.Activar())
                         {
                             MessageBox.Show("Promocion activada correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha activado la promocion de ID " + MiPromocion.PromocionID);
+
+                            if (Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
                             ActivarAgregar();
@@ -482,6 +507,13 @@ namespace FalconSushi.Formularios
                         if (MiPromocion.Desactivar())
                         {
                             MessageBox.Show("Promocion desactivado correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha desactivado la promocion de ID " + MiPromocion.PromocionID);
+
+                            if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
                             ActivarAgregar();

@@ -100,6 +100,13 @@ namespace FalconSushi.Formularios
                         if (MiPedidoLocal.Activar())
                         {
                             MessageBox.Show("Pedido activado correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha activado el pedido de ID " + MiPedidoLocal.PedidoID);
+
+                            if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
 
@@ -117,6 +124,12 @@ namespace FalconSushi.Formularios
                         if (MiPedidoLocal.Desactivar())
                         {
                             MessageBox.Show("Pedido desactivado correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha desactivado el pedido de ID " + MiPedidoLocal.PedidoID);
+                            if (Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
 

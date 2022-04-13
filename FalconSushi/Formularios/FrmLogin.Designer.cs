@@ -40,6 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.BtnAdmin = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,14 +140,14 @@
             // label5
             // 
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(9, 324);
+            this.label5.Location = new System.Drawing.Point(9, 278);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(707, 2);
             this.label5.TabIndex = 9;
             // 
             // BtnAdmin
             // 
-            this.BtnAdmin.Location = new System.Drawing.Point(615, 285);
+            this.BtnAdmin.Location = new System.Drawing.Point(615, 239);
             this.BtnAdmin.Name = "BtnAdmin";
             this.BtnAdmin.Size = new System.Drawing.Size(75, 23);
             this.BtnAdmin.TabIndex = 10;
@@ -154,11 +155,22 @@
             this.BtnAdmin.UseVisualStyleBackColor = true;
             this.BtnAdmin.Click += new System.EventHandler(this.BtnAdmin_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(12, 289);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(199, 25);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Ingrese sus datos";
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 407);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.BtnAdmin);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -196,5 +208,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button BtnAdmin;
+        private System.Windows.Forms.Label label6;
     }
 }

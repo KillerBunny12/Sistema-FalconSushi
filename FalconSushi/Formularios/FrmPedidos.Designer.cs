@@ -46,8 +46,10 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.CbVerActivos = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDetalles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // DgvLista
@@ -227,11 +229,22 @@
             this.CbVerActivos.UseVisualStyleBackColor = true;
             this.CbVerActivos.CheckedChanged += new System.EventHandler(this.CbVerActivos_CheckedChanged);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FalconSushi.Properties.Resources.FalconSushiLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(912, 492);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(94, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 49;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 581);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.CbVerActivos);
             this.Controls.Add(this.BtnCancelar);
@@ -248,6 +261,7 @@
             this.Load += new System.EventHandler(this.FrmPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDetalles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,5 +286,6 @@
         private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.TextBox TxtBuscar;
         private System.Windows.Forms.CheckBox CbVerActivos;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

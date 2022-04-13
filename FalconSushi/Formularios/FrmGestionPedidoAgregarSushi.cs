@@ -24,7 +24,7 @@ namespace FalconSushi.Formularios
             LlenarLista();
         }
 
-        private void LlenarLista(string Filtro = "")
+        public void LlenarLista(string Filtro = "")
         {
 
             //Se llena la lista con todos los productos que se encuentren activos y disponibles en el sistema
@@ -104,6 +104,10 @@ namespace FalconSushi.Formularios
                 }
 
 
+            }
+            else
+            {
+                MessageBox.Show("Seleccione al menos 1 sushi", "Verificacion datos", MessageBoxButtons.OK);
             }
         }
 

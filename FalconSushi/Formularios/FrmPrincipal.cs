@@ -18,7 +18,7 @@ namespace FalconSushi.Formularios
 
         private void FrmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            
         }
 
         private void ingredientesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -55,6 +55,29 @@ namespace FalconSushi.Formularios
         {
             Locale.ObjetosGlobales.MiFormPedidos = new FrmPedidos();
             Locale.ObjetosGlobales.MiFormPedidos.Show();
+        }
+
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Locale.ObjetosGlobales.MiFormBitacora = new FrmBitacora();
+            Locale.ObjetosGlobales.MiFormBitacora.Show();
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            var ConfirmarSalir = MessageBox.Show("Esta seguro que desea salir de la sesion actual?", "Salir", MessageBoxButtons.YesNo);
+
+            if (ConfirmarSalir == DialogResult.Yes)
+            {
+                Locale.ObjetosGlobales.MiLogin = new FrmLogin();
+                Locale.ObjetosGlobales.MiLogin.Show();
+                this.Close();
+                Locale.ObjetosGlobales.MiUsuarioGlobal = new Logica.Usuario();
+            }
+            
+           
+            
         }
     }
 }

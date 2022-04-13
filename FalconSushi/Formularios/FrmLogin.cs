@@ -32,7 +32,7 @@ namespace FalconSushi.Formularios
                 int UserID = MiUsuario.ValidarLogin(us, pass);
                 if (UserID > 0)
                 {
-
+                    Locale.ObjetosGlobales.MiFormPrincipal = new FrmPrincipal();
                     Locale.ObjetosGlobales.MiUsuarioGlobal = MiUsuario.Consultar(UserID);
                     Locale.ObjetosGlobales.MiFormPrincipal.Show();
                     this.Hide();
@@ -58,13 +58,14 @@ namespace FalconSushi.Formularios
         {
             Logica.Usuario Dummy = new Logica.Usuario();
             Locale.ObjetosGlobales.MiUsuarioGlobal = Dummy.Consultar(1);
+            Locale.ObjetosGlobales.MiFormPrincipal = new FrmPrincipal();
             Locale.ObjetosGlobales.MiFormPrincipal.Show();
             this.Hide();
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-
+           /// this.BtnAdmin.Visible = false;
         }
     }
 }

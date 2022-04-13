@@ -44,7 +44,7 @@ namespace FalconSushi.Formularios
             TxtUser.Clear();
 
 
-            CbActivo.Checked = true;
+            
             FlagCambioContra = false;
 
 
@@ -108,8 +108,15 @@ namespace FalconSushi.Formularios
                     if (MiUsuario.Agregar())
                     {
                         MessageBox.Show("Usuario agregado correctamente", "Exito!", MessageBoxButtons.OK);
+                        Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha agregado el usuario de nombre " + MiUsuario.Nombre);
+
+                        if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                        {
+                            Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                        }
+
                         Limpiar();
-                        LlenarLista(this.CbActivo.Checked);
+                        LlenarLista(this.CbVerActivos.Checked);
 
                     }
                     else
@@ -128,6 +135,10 @@ namespace FalconSushi.Formularios
 
 
 
+            }
+            else
+            {
+                MessageBox.Show("Rellene todos los campos requeridos", "Verificacion datos", MessageBoxButtons.OK);
             }
         }
 
@@ -217,6 +228,13 @@ namespace FalconSushi.Formularios
                         if (MiUsuario.Activar())
                         {
                             MessageBox.Show("Usuario activado correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha activado el usuario de ID " + MiUsuario.UsuarioID);
+
+                            if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
                             ActivarAgregar();
@@ -233,10 +251,27 @@ namespace FalconSushi.Formularios
                         //Se ejecuta el metodo de desactivacion
                         if (MiUsuario.Desactivar())
                         {
-                            MessageBox.Show("Usuario desactivado correctamente", "Exito!", MessageBoxButtons.OK);
-                            Limpiar();
-                            LlenarLista(CbVerActivos.Checked);
-                            ActivarAgregar();
+                            if (MiUsuario.UsuarioID != Locale.ObjetosGlobales.MiUsuarioGlobal.UsuarioID)
+                            {
+
+
+                                MessageBox.Show("Usuario desactivado correctamente", "Exito!", MessageBoxButtons.OK);
+                                Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha desactivado el usuario de ID " + MiUsuario.UsuarioID);
+
+                                if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                                {
+                                    Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                                }
+
+                                Limpiar();
+                                LlenarLista(CbVerActivos.Checked);
+                                ActivarAgregar();
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se puede desactivar este usuario debido a que s eencuentra logueado en el sistema", "Desctivacion usuario", MessageBoxButtons.OK);
+                            }
                         }
                         else
                         {
@@ -291,7 +326,7 @@ namespace FalconSushi.Formularios
             TxtCodigo.Text = UsuarioLocal.UsuarioID.ToString();
             TxtNombre.Text = UsuarioLocal.Nombre;
             TxtUser.Text = UsuarioLocal.User;
-            CbActivo.Checked = UsuarioLocal.Activo;
+            
 
             ActivarEditarEliminar();
         }
@@ -335,6 +370,12 @@ namespace FalconSushi.Formularios
                             //Si el procedimiento de editar al usuario fue correcto se muestra un mensaje al usuario y se limpian los campos
                             //De otra forma se muestran los respectivos mensajes de error
                             MessageBox.Show("Usuario editado correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha editado el usuario de ID " + MiUsuario.UsuarioID);
+                            if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
                             ActivarAgregar();

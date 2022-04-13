@@ -38,7 +38,7 @@ namespace FalconSushi.Formularios
             TxtBuscar.Clear();
             TxtCodigo.Clear();
             TxtNombre.Clear();
-            CbActivo.Checked = true;
+            
 
         }
 
@@ -127,8 +127,15 @@ namespace FalconSushi.Formularios
                 if (MiIngrediente.Agregar())
                 {
                     MessageBox.Show("Ingrediente agregado correctamente", "Exito!", MessageBoxButtons.OK);
+                    Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha agregado el ingrediente de nombre " + MiIngrediente.Nombre);
+
+                    if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                    {
+                        Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                    }
+
                     Limpiar();
-                    LlenarLista(this.CbActivo.Checked);
+                    LlenarLista(this.CbVerActivos.Checked);
 
                 }
                 else
@@ -141,6 +148,10 @@ namespace FalconSushi.Formularios
 
 
 
+            }
+            else
+            {
+                MessageBox.Show("Rellene todos los campos requeridos", "Verificacion datos", MessageBoxButtons.OK);
             }
         }
 
@@ -169,6 +180,13 @@ namespace FalconSushi.Formularios
                         //Si el procedimiento de editar al usuario fue correcto se muestra un mensaje al usuario y se limpian los campos
                         //De otra forma se muestran los respectivos mensajes de error
                         MessageBox.Show("Ingrediente editado correctamente", "Exito!", MessageBoxButtons.OK);
+                        Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha editado el ingrediente de ID " + MiIngrediente.IngredienteID);
+
+                        if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                        {
+                            Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                        }
+
                         Limpiar();
                         LlenarLista(CbVerActivos.Checked);
                         ActivarAgregar();
@@ -215,8 +233,15 @@ namespace FalconSushi.Formularios
                         {
                             MessageBox.Show("Ingrediente activado correctamente", "Exito!", MessageBoxButtons.OK);
                             Limpiar();
+
+                            if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             LlenarLista(CbVerActivos.Checked);
                             ActivarAgregar();
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha activado el ingrediente de ID " + MiIngrediente.IngredienteID);
 
 
                         }
@@ -231,6 +256,13 @@ namespace FalconSushi.Formularios
                         if (MiIngrediente.Desactivar())
                         {
                             MessageBox.Show("Ingrediente desactivado correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha desactivado el ingrediente de ID " + MiIngrediente.IngredienteID);
+
+                            if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
                             ActivarAgregar();
@@ -300,7 +332,7 @@ namespace FalconSushi.Formularios
             TxtCodigo.Text = IngredienteLocal.IngredienteID.ToString();
             TxtNombre.Text = IngredienteLocal.Nombre;
 
-            CbActivo.Checked = IngredienteLocal.Activo;
+            
 
             ActivarEditarEliminar();
         }

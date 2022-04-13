@@ -43,10 +43,14 @@
             this.sPSushiListarTableAdapter = new FalconSushi.FalconSushiDataSet9TableAdapters.SPSushiListarTableAdapter();
             this.label1 = new System.Windows.Forms.Label();
             this.NudCantidad = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.LblUsuarioRegistra = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPSushiListarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // DgvLista
@@ -166,11 +170,44 @@
             this.NudCantidad.Size = new System.Drawing.Size(120, 20);
             this.NudCantidad.TabIndex = 39;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(186, 51);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "Buscar";
+            // 
+            // LblUsuarioRegistra
+            // 
+            this.LblUsuarioRegistra.AutoSize = true;
+            this.LblUsuarioRegistra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsuarioRegistra.Location = new System.Drawing.Point(9, 9);
+            this.LblUsuarioRegistra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblUsuarioRegistra.Name = "LblUsuarioRegistra";
+            this.LblUsuarioRegistra.Size = new System.Drawing.Size(192, 26);
+            this.LblUsuarioRegistra.TabIndex = 41;
+            this.LblUsuarioRegistra.Text = "Seleccione sushi";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FalconSushi.Properties.Resources.FalconSushiLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(337, -1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(71, 65);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 50;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmGestionPedidoAgregarSushi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 426);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.LblUsuarioRegistra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NudCantidad);
             this.Controls.Add(this.DgvLista);
@@ -189,6 +226,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.sPSushiListarBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,5 +247,8 @@
         private FalconSushiDataSet9TableAdapters.SPSushiListarTableAdapter sPSushiListarTableAdapter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown NudCantidad;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblUsuarioRegistra;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

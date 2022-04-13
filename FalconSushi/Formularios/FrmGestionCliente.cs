@@ -41,7 +41,7 @@ namespace FalconSushi.Formularios
             TxtNombre.Clear();
             TxtDireccion.Clear();
             TxtTelefono.Clear();
-            CbActivo.Checked = true;
+          
 
         }
 
@@ -128,8 +128,17 @@ namespace FalconSushi.Formularios
                 if (MiCliente.Agregar())
                 {
                     MessageBox.Show("Cliente agregado correctamente", "Exito!", MessageBoxButtons.OK);
+                    Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha agregado un cliente con el nombre " + MiCliente.Nombre + " y telefono: " + MiCliente.Telefono);
+
+                    if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                    {
+                        Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                    }
+
+
+
                     Limpiar();
-                    LlenarLista(this.CbActivo.Checked);
+                    LlenarLista(this.CbVerActivos.Checked);
 
                 }
                 else
@@ -142,6 +151,10 @@ namespace FalconSushi.Formularios
 
 
 
+            }
+            else
+            {
+                MessageBox.Show("Rellene todos los campos requeridos", "Verificacion datos", MessageBoxButtons.OK);
             }
         }
 
@@ -171,6 +184,13 @@ namespace FalconSushi.Formularios
                         //Si el procedimiento de editar al usuario fue correcto se muestra un mensaje al usuario y se limpian los campos
                         //De otra forma se muestran los respectivos mensajes de error
                         MessageBox.Show("Cliente editado correctamente", "Exito!", MessageBoxButtons.OK);
+                        Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha editado el cliente de ID " + MiCliente.ClienteID);
+
+                        if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                        {
+                            Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                        }
+
                         Limpiar();
                         LlenarLista(CbVerActivos.Checked);
                         ActivarAgregar();
@@ -216,6 +236,13 @@ namespace FalconSushi.Formularios
                         if (MiCliente.Activar())
                         {
                             MessageBox.Show("Cliente activado correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha activado el cliente de ID " + MiCliente.ClienteID);
+
+                            if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
                             ActivarAgregar();
@@ -233,6 +260,13 @@ namespace FalconSushi.Formularios
                         if (MiCliente.Desactivar())
                         {
                             MessageBox.Show("Cliente desactivado correctamente", "Exito!", MessageBoxButtons.OK);
+                            Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha desactivado el cliente de ID " + MiCliente.ClienteID);
+
+                            if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                            {
+                                Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                            }
+
                             Limpiar();
                             LlenarLista(CbVerActivos.Checked);
                             ActivarAgregar();
@@ -298,7 +332,7 @@ namespace FalconSushi.Formularios
             TxtDireccion.Text = ClienteLocal.Direccion;
             TxtTelefono.Text = ClienteLocal.Telefono;
 
-            CbActivo.Checked = ClienteLocal.Activo;
+          
 
             ActivarEditarEliminar();
         }

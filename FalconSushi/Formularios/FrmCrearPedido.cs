@@ -72,6 +72,7 @@ namespace FalconSushi.Formularios
             GenerarNumeroFactura();
 
             CBCliente.Checked = false;
+            MiPedidoLocal = new Pedido();
 
         }
 
@@ -200,14 +201,25 @@ namespace FalconSushi.Formularios
                     //Si la compra fue exitosa se muestra un mensaje de exito y se procede a la creacion del reporte
                     //Se crea un documento de reporte y se imprime con todos los valores registrados
                     MessageBox.Show("Se ha creado la compra correctamente", "Exito", MessageBoxButtons.OK);
+                    Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha creado la compra con el numero de factura " + MiPedidoLocal.NumeroFctura);
 
+                    if (Locale.ObjetosGlobales.MiFormBitacora != null && Locale.ObjetosGlobales.MiFormBitacora.Visible)
+                    {
+                        Locale.ObjetosGlobales.MiFormBitacora.LlenarLista(Locale.ObjetosGlobales.MiFormBitacora.VerUltimoMes);
+                    }
 
+                 
+                    
                     Limpiar();
                 }
                 else
                 {
                     MessageBox.Show("Ha ocurrido un error al intentar registrar la compra", "Error", MessageBoxButtons.OK);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Rellene todos los campos requeridos", "Verificacion datos", MessageBoxButtons.OK);
             }
         }
 
@@ -293,9 +305,9 @@ namespace FalconSushi.Formularios
                 try
                 {
                     //Se abre el form de Compra detalle gestion para poder seleccionar y producto a agregar
-                    Form FormBuscarCliente = new Formularios.FrmGestionPedidoAgregarClientr();
+                    Locale.ObjetosGlobales.MiFormPedidAgregarcliente = new Formularios.FrmGestionPedidoAgregarClientr();
 
-                    DialogResult Resp = FormBuscarCliente.ShowDialog();
+                    DialogResult Resp = Locale.ObjetosGlobales.MiFormPedidAgregarcliente.ShowDialog();
 
                     //Si la respuesta fue exitosa y se selecciono producto
                     //Se vuelve a cargar el datatable con los productos seleccionados y se calcula el precio de venta

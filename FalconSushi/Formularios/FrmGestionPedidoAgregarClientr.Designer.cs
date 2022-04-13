@@ -41,9 +41,13 @@
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.sPClienteListarTableAdapter = new FalconSushi.FalconSushiDataSet11TableAdapters.SPClienteListarTableAdapter();
+            this.label1 = new System.Windows.Forms.Label();
+            this.LblUsuarioRegistra = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPClienteListarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // DgvLista
@@ -144,11 +148,44 @@
             // 
             this.sPClienteListarTableAdapter.ClearBeforeFill = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(257, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "Buscar";
+            // 
+            // LblUsuarioRegistra
+            // 
+            this.LblUsuarioRegistra.AutoSize = true;
+            this.LblUsuarioRegistra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsuarioRegistra.Location = new System.Drawing.Point(11, 9);
+            this.LblUsuarioRegistra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblUsuarioRegistra.Name = "LblUsuarioRegistra";
+            this.LblUsuarioRegistra.Size = new System.Drawing.Size(206, 26);
+            this.LblUsuarioRegistra.TabIndex = 43;
+            this.LblUsuarioRegistra.Text = "Seleccione cliente";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FalconSushi.Properties.Resources.FalconSushiLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(544, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(57, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 51;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmGestionPedidoAgregarClientr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 461);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LblUsuarioRegistra);
             this.Controls.Add(this.DgvLista);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnAceptar);
@@ -164,6 +201,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPClienteListarBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +220,8 @@
         private System.Windows.Forms.Button BtnAceptar;
         private System.Windows.Forms.TextBox TxtBuscar;
         private FalconSushiDataSet11TableAdapters.SPClienteListarTableAdapter sPClienteListarTableAdapter;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LblUsuarioRegistra;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

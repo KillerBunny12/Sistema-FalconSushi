@@ -44,10 +44,14 @@
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.sPPromocionListarTableAdapter = new FalconSushi.FalconSushiDataSet10TableAdapters.SPPromocionListarTableAdapter();
+            this.label2 = new System.Windows.Forms.Label();
+            this.LblUsuarioRegistra = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPPromocionListarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -176,11 +180,44 @@
             // 
             this.sPPromocionListarTableAdapter.ClearBeforeFill = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(231, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "Buscar";
+            // 
+            // LblUsuarioRegistra
+            // 
+            this.LblUsuarioRegistra.AutoSize = true;
+            this.LblUsuarioRegistra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsuarioRegistra.Location = new System.Drawing.Point(11, 9);
+            this.LblUsuarioRegistra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblUsuarioRegistra.Name = "LblUsuarioRegistra";
+            this.LblUsuarioRegistra.Size = new System.Drawing.Size(247, 26);
+            this.LblUsuarioRegistra.TabIndex = 47;
+            this.LblUsuarioRegistra.Text = "Seleccione promocion";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FalconSushi.Properties.Resources.FalconSushiLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(469, -4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 60);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 51;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmGestionPedidoAgregarPromocion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 455);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.LblUsuarioRegistra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NudCantidad);
             this.Controls.Add(this.DgvLista);
@@ -199,6 +236,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPPromocionListarBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,5 +258,8 @@
         private System.Windows.Forms.BindingSource sPPromocionListarBindingSource;
         private FalconSushiDataSet10 falconSushiDataSet10;
         private FalconSushiDataSet10TableAdapters.SPPromocionListarTableAdapter sPPromocionListarTableAdapter;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblUsuarioRegistra;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

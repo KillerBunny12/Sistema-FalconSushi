@@ -36,7 +36,6 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
-            this.CbActivo = new System.Windows.Forms.CheckBox();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.TxtCodigo = new System.Windows.Forms.TextBox();
@@ -48,9 +47,13 @@
             this.sPIngredienteListarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.falconSushiDataSet1 = new FalconSushi.FalconSushiDataSet1();
             this.sPIngredienteListarTableAdapter = new FalconSushi.FalconSushiDataSet1TableAdapters.SPIngredienteListarTableAdapter();
+            this.label2 = new System.Windows.Forms.Label();
+            this.LblUsuarioRegistra = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPIngredienteListarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // TxtBuscar
@@ -66,7 +69,7 @@
             this.BtnCancelar.BackColor = System.Drawing.Color.MediumOrchid;
             this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelar.Location = new System.Drawing.Point(755, 333);
+            this.BtnCancelar.Location = new System.Drawing.Point(756, 286);
             this.BtnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(105, 38);
@@ -80,7 +83,7 @@
             this.BtnLimpiar.BackColor = System.Drawing.Color.LightBlue;
             this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLimpiar.Location = new System.Drawing.Point(646, 375);
+            this.BtnLimpiar.Location = new System.Drawing.Point(647, 328);
             this.BtnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(105, 38);
@@ -95,7 +98,7 @@
             this.BtnEliminar.Enabled = false;
             this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.Location = new System.Drawing.Point(537, 375);
+            this.BtnEliminar.Location = new System.Drawing.Point(538, 328);
             this.BtnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnEliminar.Name = "BtnEliminar";
             this.BtnEliminar.Size = new System.Drawing.Size(105, 38);
@@ -110,7 +113,7 @@
             this.BtnEditar.Enabled = false;
             this.BtnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEditar.Location = new System.Drawing.Point(646, 333);
+            this.BtnEditar.Location = new System.Drawing.Point(647, 286);
             this.BtnEditar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnEditar.Name = "BtnEditar";
             this.BtnEditar.Size = new System.Drawing.Size(105, 38);
@@ -124,7 +127,7 @@
             this.BtnAgregar.BackColor = System.Drawing.Color.PaleGreen;
             this.BtnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAgregar.Location = new System.Drawing.Point(537, 333);
+            this.BtnAgregar.Location = new System.Drawing.Point(538, 286);
             this.BtnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(105, 38);
@@ -132,18 +135,6 @@
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = false;
             this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
-            // 
-            // CbActivo
-            // 
-            this.CbActivo.AutoSize = true;
-            this.CbActivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbActivo.Location = new System.Drawing.Point(313, 327);
-            this.CbActivo.Margin = new System.Windows.Forms.Padding(2);
-            this.CbActivo.Name = "CbActivo";
-            this.CbActivo.Size = new System.Drawing.Size(62, 17);
-            this.CbActivo.TabIndex = 39;
-            this.CbActivo.Text = "Activo";
-            this.CbActivo.UseVisualStyleBackColor = true;
             // 
             // TxtNombre
             // 
@@ -242,18 +233,50 @@
             // 
             this.sPIngredienteListarTableAdapter.ClearBeforeFill = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(508, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 47;
+            this.label2.Text = "Buscar";
+            // 
+            // LblUsuarioRegistra
+            // 
+            this.LblUsuarioRegistra.AutoSize = true;
+            this.LblUsuarioRegistra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsuarioRegistra.Location = new System.Drawing.Point(11, 9);
+            this.LblUsuarioRegistra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblUsuarioRegistra.Name = "LblUsuarioRegistra";
+            this.LblUsuarioRegistra.Size = new System.Drawing.Size(143, 26);
+            this.LblUsuarioRegistra.TabIndex = 46;
+            this.LblUsuarioRegistra.Text = "Ingredientes";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FalconSushi.Properties.Resources.FalconSushiLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(778, 340);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(94, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 77;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmGestionIngredientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 426);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.LblUsuarioRegistra);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnEditar);
             this.Controls.Add(this.BtnAgregar);
-            this.Controls.Add(this.CbActivo);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.TxtCodigo);
@@ -271,6 +294,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPIngredienteListarBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,7 +308,6 @@
         private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.Button BtnEditar;
         private System.Windows.Forms.Button BtnAgregar;
-        private System.Windows.Forms.CheckBox CbActivo;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TxtCodigo;
@@ -296,5 +319,8 @@
         private System.Windows.Forms.BindingSource sPIngredienteListarBindingSource;
         private FalconSushiDataSet1 falconSushiDataSet1;
         private FalconSushiDataSet1TableAdapters.SPIngredienteListarTableAdapter sPIngredienteListarTableAdapter;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblUsuarioRegistra;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

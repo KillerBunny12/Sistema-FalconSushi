@@ -42,18 +42,22 @@
             this.sPIngredienteListarBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.falconSushiDataSet5 = new FalconSushi.FalconSushiDataSet5();
             this.sPIngredienteListarTableAdapter1 = new FalconSushi.FalconSushiDataSet5TableAdapters.SPIngredienteListarTableAdapter();
+            this.label1 = new System.Windows.Forms.Label();
+            this.LblUsuarioRegistra = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPIngredienteListarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPIngredienteListarBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnCancelar
             // 
             this.BtnCancelar.BackColor = System.Drawing.Color.LightCoral;
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelar.Location = new System.Drawing.Point(238, 282);
+            this.BtnCancelar.Location = new System.Drawing.Point(238, 323);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(114, 44);
             this.BtnCancelar.TabIndex = 10;
@@ -65,7 +69,7 @@
             // 
             this.BtnAceptar.BackColor = System.Drawing.Color.PaleGreen;
             this.BtnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAceptar.Location = new System.Drawing.Point(23, 282);
+            this.BtnAceptar.Location = new System.Drawing.Point(23, 323);
             this.BtnAceptar.Name = "BtnAceptar";
             this.BtnAceptar.Size = new System.Drawing.Size(119, 44);
             this.BtnAceptar.TabIndex = 9;
@@ -76,7 +80,7 @@
             // TxtBuscar
             // 
             this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtBuscar.Location = new System.Drawing.Point(67, 34);
+            this.TxtBuscar.Location = new System.Drawing.Point(67, 75);
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(244, 22);
             this.TxtBuscar.TabIndex = 7;
@@ -106,7 +110,7 @@
             this.GCodigo,
             this.GNombre});
             this.DgvLista.DataSource = this.sPIngredienteListarBindingSource1;
-            this.DgvLista.Location = new System.Drawing.Point(23, 62);
+            this.DgvLista.Location = new System.Drawing.Point(23, 103);
             this.DgvLista.Name = "DgvLista";
             this.DgvLista.ReadOnly = true;
             this.DgvLista.RowHeadersVisible = false;
@@ -144,11 +148,44 @@
             // 
             this.sPIngredienteListarTableAdapter1.ClearBeforeFill = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(163, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "Buscar";
+            // 
+            // LblUsuarioRegistra
+            // 
+            this.LblUsuarioRegistra.AutoSize = true;
+            this.LblUsuarioRegistra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsuarioRegistra.Location = new System.Drawing.Point(11, 9);
+            this.LblUsuarioRegistra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblUsuarioRegistra.Name = "LblUsuarioRegistra";
+            this.LblUsuarioRegistra.Size = new System.Drawing.Size(254, 26);
+            this.LblUsuarioRegistra.TabIndex = 37;
+            this.LblUsuarioRegistra.Text = "Seleccione ingrediente";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FalconSushi.Properties.Resources.FalconSushiLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(309, -5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(71, 65);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 51;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmGestionAgregarIngrediente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 338);
+            this.ClientSize = new System.Drawing.Size(378, 377);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LblUsuarioRegistra);
             this.Controls.Add(this.DgvLista);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnAceptar);
@@ -163,6 +200,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sPIngredienteListarBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.falconSushiDataSet5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +220,8 @@
         private System.Windows.Forms.BindingSource sPIngredienteListarBindingSource1;
         private FalconSushiDataSet5 falconSushiDataSet5;
         private FalconSushiDataSet5TableAdapters.SPIngredienteListarTableAdapter sPIngredienteListarTableAdapter1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LblUsuarioRegistra;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

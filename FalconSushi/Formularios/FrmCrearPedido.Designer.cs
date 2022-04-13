@@ -56,10 +56,13 @@
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.CBCliente = new System.Windows.Forms.CheckBox();
             this.TxtCliente = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaSushi)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaPromocion)).BeginInit();
             this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // TxtTotalCompra
@@ -89,7 +92,7 @@
             this.BtnCrearCompra.BackColor = System.Drawing.Color.PaleGreen;
             this.BtnCrearCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCrearCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCrearCompra.Location = new System.Drawing.Point(795, 423);
+            this.BtnCrearCompra.Location = new System.Drawing.Point(759, 423);
             this.BtnCrearCompra.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCrearCompra.Name = "BtnCrearCompra";
             this.BtnCrearCompra.Size = new System.Drawing.Size(121, 55);
@@ -331,7 +334,7 @@
             // 
             this.BtnCancelar.BackColor = System.Drawing.Color.LightCoral;
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelar.Location = new System.Drawing.Point(656, 423);
+            this.BtnCancelar.Location = new System.Drawing.Point(620, 423);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(123, 55);
             this.BtnCancelar.TabIndex = 44;
@@ -359,11 +362,34 @@
             this.TxtCliente.TabIndex = 46;
             this.TxtCliente.Text = "Anonimo";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(220, 26);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "Crear nuevo pedido";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FalconSushi.Properties.Resources.FalconSushiLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(885, 391);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(94, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 77;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmCrearPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(978, 482);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.TxtCliente);
             this.Controls.Add(this.CBCliente);
             this.Controls.Add(this.BtnCancelar);
@@ -393,6 +419,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaPromocion)).EndInit();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,5 +454,7 @@
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.CheckBox CBCliente;
         private System.Windows.Forms.TextBox TxtCliente;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
