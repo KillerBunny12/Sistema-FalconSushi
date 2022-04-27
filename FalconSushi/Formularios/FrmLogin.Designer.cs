@@ -147,12 +147,14 @@
             // 
             // BtnAdmin
             // 
+            this.BtnAdmin.Enabled = false;
             this.BtnAdmin.Location = new System.Drawing.Point(615, 239);
             this.BtnAdmin.Name = "BtnAdmin";
             this.BtnAdmin.Size = new System.Drawing.Size(75, 23);
             this.BtnAdmin.TabIndex = 10;
             this.BtnAdmin.Text = "Admin";
             this.BtnAdmin.UseVisualStyleBackColor = true;
+            this.BtnAdmin.Visible = false;
             this.BtnAdmin.Click += new System.EventHandler(this.BtnAdmin_Click);
             // 
             // label6
