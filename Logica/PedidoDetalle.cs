@@ -23,9 +23,8 @@ namespace Logica
 
         public DataTable Listar(int PIDPedido)
         {
-            //Se crea el objeto de conexion y se le dan los parametros dados por el usuario los cuales sirven para decir
-            //Si se veran los usuarios activos o inactivos, ademas, de filtrar valores como nombre o user.
-            //Se crea un datatable con los usuarios y se retorna al usuario
+            //Se crea el objeto de conexion
+            //Se crea un datatable con los detalles y se retorna al usuario
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();
             MiConexion.ListadoDeParametros.Add(new SqlParameter("@IDPedido", PIDPedido));
@@ -36,7 +35,7 @@ namespace Logica
         }
 
         public PedidoDetalle Consultar(int PIDPedidoDetalle)
-        {//Se crea un objeto de tipo usuario
+        {//Se crea un objeto de tipo PedidoDetalle
             //Ademas de que se crea el objeto de tipo conexion y se le da el parametro de ID dado por el usuario
             PedidoDetalle r = new PedidoDetalle();
             Conexion MiConexion = new Conexion();
@@ -46,8 +45,8 @@ namespace Logica
 
             if (DatosDetalle.Rows.Count > 0)
             {
-                //Si el procedimiento encontro el usuario consultado
-                //Se le asignaran todos los valores al objeto usuario r antes creado y se retorna
+                //Si el procedimiento encontro el detalle consultado
+                //Se le asignaran todos los valores al objeto detalle r antes creado y se retorna
                 DataRow MiFila = DatosDetalle.Rows[0];
                 r.PedidoDetalleID = Convert.ToInt32(MiFila["PedidoDetalleID"]);
                 r.pedido.PedidoID = Convert.ToInt32(MiFila["IDPedido"]);

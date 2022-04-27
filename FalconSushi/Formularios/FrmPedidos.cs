@@ -52,7 +52,7 @@ namespace FalconSushi.Formularios
         private void LlenarLista(bool Activos, string Filtro = "")
         {
 
-            //Se crea un objeto de tipo Usuario y dependiendo si se dio valores para filtrar
+            //Se crea un objeto de tipo Pedido y dependiendo si se dio valores para filtrar
             //se muestra la tabla con filtro o sin filtro
             DTListaDetalle.Clear();
             DesactivarEliminar();
@@ -95,8 +95,9 @@ namespace FalconSushi.Formularios
                     if (FlagActivar)
                     {
 
-                        //Si el usuario esta activando el sushi
+                        //Si el usuario esta activando el Pedido
                         //Se ejecuta el metodo de activacion
+                        //Se ejecuta la bitacora
                         if (MiPedidoLocal.Activar())
                         {
                             MessageBox.Show("Pedido activado correctamente", "Exito!", MessageBoxButtons.OK);
@@ -119,8 +120,9 @@ namespace FalconSushi.Formularios
                         }
                     }
                     else
-                    {//Si el usuario esta desactivando el sushi
+                    {//Si el usuario esta desactivando el Pedido
                         //Se ejecuta el metodo de desactivacion
+                        //Se ejecuta la bitacora
                         if (MiPedidoLocal.Desactivar())
                         {
                             MessageBox.Show("Pedido desactivado correctamente", "Exito!", MessageBoxButtons.OK);
@@ -149,6 +151,9 @@ namespace FalconSushi.Formularios
 
         private void CbVerActivos_CheckedChanged(object sender, EventArgs e)
         {
+            //En caso de darse click al checkbox
+            //Se vuelve a rellenar la lista de pedidos
+            //Dependiendo de si desea ver activos o inactivos
             LlenarLista(CbVerActivos.Checked);
             Limpiar();
             DgvLista.ClearSelection();
@@ -169,6 +174,7 @@ namespace FalconSushi.Formularios
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
+            //Si se ingresa texto al campo de buscar se vuelve a llenar la lista con las promociones filtrados
             if (!String.IsNullOrEmpty(TxtBuscar.Text.Trim()) && TxtBuscar.Text.Count() >= 2)
             {
                 LlenarLista(CbVerActivos.Checked, TxtBuscar.Text.Trim());
@@ -187,6 +193,9 @@ namespace FalconSushi.Formularios
 
         private void DgvLista_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Al seleccionar un item en el DataGrid se obtienen sus valores y se crea un objeto de pedido y se le asignan los valores
+            //a los campos de texto y al checkbox de Activo
+           
             DTListaDetalle.Clear();
             DataGridViewRow MiFila = DgvLista.SelectedRows[0];
             int IDPedido = Convert.ToInt32(MiFila.Cells["GCodigo"].Value);
@@ -198,7 +207,9 @@ namespace FalconSushi.Formularios
 
             foreach (PedidoDetalle item in MiPedido.ListaDetalles)
             {
-
+                //Se recorren todos los detalles del pedido
+                //Se verifica si el detalle es un sushi o promocion
+                //Se agrega al datatable
 
                 DataRow NuevaFila = DTListaDetalle.NewRow();
                 NuevaFila["PedidoDetalleID"] = item.PedidoDetalleID;

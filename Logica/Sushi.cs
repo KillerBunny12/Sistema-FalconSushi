@@ -73,6 +73,7 @@ namespace Logica
             return r;
         }
 
+        //En caso remover el ingrediente de un sushi, se cambia su alor Activo, para que ya no se muestre ni se use por este sushi
         public void DesactivarIngrediente(int PIngredienteID)
         {
             foreach (Ingrediente item in this.ListaIngredientes)
@@ -125,6 +126,7 @@ namespace Logica
                         foreach (Ingrediente item in this.ListaIngredientes)
                         {
 
+                            //En caso de que el item ingrediente no este activo, se cambia en la base de datos
                             if (!item.Activo)
                             {
                                 Conexion MiCnn = new Conexion();
@@ -138,6 +140,11 @@ namespace Logica
                             }
                             else
                             {
+
+                                //En caso del ingrediente ser activo
+                                //Se crea la clase conexion y se verifica que el ingrediente exista
+                                //En caso de existir se agrega a la tabla SushiIngredientes
+                                //Se ejecuta en un ciclo hasta que a no haya items en la lista
                                 Conexion MiCnn = new Conexion();
                                 MiCnn.ListadoDeParametros.Add(new SqlParameter("@IDSushi", this.SushiID));
                                 MiCnn.ListadoDeParametros.Add(new SqlParameter("@IDIngrediente", item.IngredienteID));
@@ -189,7 +196,7 @@ namespace Logica
         {
             bool r = false;
             try
-            { //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el usuario
+            { //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el Sushi
                 //El procedimiento se encarga de cambiar la columna Activo a 0
 
                 Conexion MiCOnexion = new Conexion();
@@ -221,7 +228,7 @@ namespace Logica
             bool r = false;
             try
             {
-                //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el usuario
+                //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el sushi
                 //El procedimiento se encarga de cambiar la columna Activo a 1
                 Conexion MiCOnexion = new Conexion();
 
@@ -259,8 +266,9 @@ namespace Logica
 
             if (DatosSushi.Rows.Count > 0)
             {
-                //Si el procedimiento encontro el usuario consultado
+                //Si el procedimiento encontro el sushi consultado
                 //Se le asignaran todos los valores al objeto usuario r antes creado y se retorna
+                //Ademasse agregan los ingredientes encontrados a la lista
                 DataRow MiFila = DatosSushi.Rows[0];
                 r.SushiID = Convert.ToInt32(MiFila["SushiID"]);
                 r.Nombre = Convert.ToString(MiFila["Nombre"]);
@@ -296,8 +304,8 @@ namespace Logica
         public DataTable Listar(bool VerActivos = true, string Filtro = "")
         {
             //Se crea el objeto de conexion y se le dan los parametros dados por el usuario los cuales sirven para decir
-            //Si se veran los usuarios activos o inactivos, ademas, de filtrar valores como nombre o user.
-            //Se crea un datatable con los usuarios y se retorna al usuario
+            //Si se veran los sushis activos o inactivos, ademas, de filtrar el valor Nombre
+            //Se crea un datatable con los sushis y se retorna al usuario
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();
             MiConexion.ListadoDeParametros.Add(new SqlParameter("@VerActivos", VerActivos));
@@ -309,8 +317,8 @@ namespace Logica
 
         public bool ConsultarPorID()
         {
-            //La funcion sirve para saber si ya existe un usuario con el ID del usuario que esta ejecutando la funcion.
-            //Si encuentra un usuario con el mismo ID retorna true
+            //La funcion sirve para saber si ya existe un sushi con el ID del sushi que esta ejecutando la funcion.
+            //Si encuentra un sushi con el mismo ID retorna true
             bool R = false;
             Conexion MiConexion = new Conexion();
             MiConexion.ListadoDeParametros.Add(new SqlParameter("@ID", this.SushiID));

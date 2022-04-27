@@ -48,7 +48,7 @@ namespace FalconSushi.Formularios
         private void LlenarLista(bool Activos, string Filtro = "")
         {
 
-            //Se crea un objeto de tipo Usuario y dependiendo si se dio valores para filtrar
+            //Se crea un objeto de tipo Cliente y dependiendo si se dio valores para filtrar
             //se muestra la tabla con filtro o sin filtro
             Logica.Cliente MiCliente = new Logica.Cliente();
 
@@ -113,7 +113,7 @@ namespace FalconSushi.Formularios
         {
             if (ValidarDatos())
             {
-                //Si los campos son validos se crea un objeto usuario y se le asignan los valores de los campos de texto
+                //Si los campos son validos se crea un objeto Cliente y se le asignan los valores de los campos de texto
                 //de otra forma se le informa al usuario
                 Logica.Cliente MiCliente = new Logica.Cliente();
 
@@ -122,7 +122,7 @@ namespace FalconSushi.Formularios
                 MiCliente.Telefono = TxtTelefono.Text.Trim();
 
 
-                //Si todas las pruebas fueron exitosas se agrega el usuario a la base de datos y se limpia el formulario
+                //Si todas las pruebas fueron exitosas se agrega el Cliente a la base de datos y se limpia el formulario
                 //De otra forma se presentaran los respectivos mensajes de error al usuario
 
                 if (MiCliente.Agregar())
@@ -163,7 +163,7 @@ namespace FalconSushi.Formularios
             if (ValidarDatos())
             {
 
-                //Si la verificacion de datos fue exitosa se crea un objeto de tipo ingrediente y se le asignan los valores ingresados por el usuario
+                //Si la verificacion de datos fue exitosa se crea un objeto de tipo Cliente y se le asignan los valores ingresados por el usuario
                 Logica.Cliente MiCliente = new Logica.Cliente();
 
                 MiCliente.ClienteID = Convert.ToInt32(TxtCodigo.Text.Trim());
@@ -174,14 +174,14 @@ namespace FalconSushi.Formularios
 
 
 
-                //Se verifica que el usuario exista y que en caso de editar el password, este sea valido
+                //Se verifica que el Cliente exista y que en caso de editar el password, este sea valido
                 if (MiCliente.ConsultarPorID())
                 {
 
 
                     if (MiCliente.Editar())
                     {
-                        //Si el procedimiento de editar al usuario fue correcto se muestra un mensaje al usuario y se limpian los campos
+                        //Si el procedimiento de editar al Cliente fue correcto se muestra un mensaje al usuario y se limpian los campos
                         //De otra forma se muestran los respectivos mensajes de error
                         MessageBox.Show("Cliente editado correctamente", "Exito!", MessageBoxButtons.OK);
                         Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha editado el cliente de ID " + MiCliente.ClienteID);
@@ -220,7 +220,7 @@ namespace FalconSushi.Formularios
             if (ValidarDatos())
             {
 
-                //Se verifican los datos y se crea un objeto de tipo usuario y se le asigna solamente el ID del usuario seleccionado
+                //Se verifican los datos y se crea un objeto de tipo Cliente y se le asigna solamente el ID del usuario seleccionado
                 Logica.Cliente MiCliente = new Logica.Cliente();
 
                 MiCliente.ClienteID = Convert.ToInt32(TxtCodigo.Text.Trim());
@@ -231,7 +231,7 @@ namespace FalconSushi.Formularios
                     if (FlagActivar)
                     {
 
-                        //Si el usuario esta activando al usuario
+                        //Si el usuario esta activando al Cliente
                         //Se ejecuta el metodo de activacion
                         if (MiCliente.Activar())
                         {
@@ -255,7 +255,7 @@ namespace FalconSushi.Formularios
                         }
                     }
                     else
-                    {//Si el usuario esta desactivando al usuario
+                    {//Si el usuario esta desactivando al Cliente
                         //Se ejecuta el metodo de desactivacion
                         if (MiCliente.Desactivar())
                         {
@@ -302,6 +302,10 @@ namespace FalconSushi.Formularios
 
         private void CbVerActivos_CheckedChanged(object sender, EventArgs e)
         {
+
+            //En caso de darse click al checkbox
+            //Se vuelve a rellenar la lista de clientes
+            //Dependiendo de si desea ver activos o inactivos
             LlenarLista(CbVerActivos.Checked);
             Limpiar();
             DgvLista.ClearSelection();
@@ -321,6 +325,9 @@ namespace FalconSushi.Formularios
 
         private void DgvLista_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Al seleccionar un item en el DataGrid se obtienen sus valores y se crea un objeto de cliente y se le asignan los valores
+            //a los campos de texto y al checkbox de Activo
+            //Ademas de que se activa el boton de editar y eliminar
             DataGridViewRow MiFila = DgvLista.SelectedRows[0];
             int IDCliente = Convert.ToInt32(MiFila.Cells["GCodigo"].Value);
             Logica.Cliente MiCliente = new Logica.Cliente();
@@ -339,6 +346,7 @@ namespace FalconSushi.Formularios
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
+            //Si se ingresa texto al campo de buscar se vuelve a llenar la lista con los clientes filtrados
             if (!String.IsNullOrEmpty(TxtBuscar.Text.Trim()) && TxtBuscar.Text.Count() >= 2)
             {
                 LlenarLista(CbVerActivos.Checked, TxtBuscar.Text.Trim());

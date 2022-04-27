@@ -8,6 +8,7 @@ namespace FalconSushi.Locale
         const string PasswordRegex = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$";
 
         public static bool ValidadPassword(string pass)
+            //Funcion que permite validar si la contraseña ingresada por un usuario es valida.
         {//Si el password es valido respecto al Regex se retorna true
             if (pass != null)
             {

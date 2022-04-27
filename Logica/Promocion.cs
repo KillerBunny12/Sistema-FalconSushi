@@ -50,7 +50,7 @@ namespace Logica
                     this.PromocionID = IDPromocioCreada;
 
                     int Acumulador = 0;
-                    //Por cada item que haya en los ingredientes del sushi, se agrega en la base de datos.
+                    //Por cada item que haya en los sushi de la promocion, se agrega en la base de datos.
                     //Se ejecuta hasta que ya no hayan mas items por agregar
                     foreach (Sushi item in this.ListaSushi)
                     {
@@ -77,6 +77,7 @@ namespace Logica
             return r;
         }
 
+        //En caso de remover un sushi de la proocion, este cambia su valor Axtivo a 0 dentro de la lista y no se utiliza
         public void DesactivarSushi(int PSushiID)
         {
             foreach (Sushi item in this.ListaSushi)
@@ -117,7 +118,7 @@ namespace Logica
                 int retorno = MiCOnexion.DMLUpdateDeleteInsert("SPPromocionEditar");
 
 
-                //Si el insert fue exitoso retorna true, de otra forma retorna false y se le informa al usuario
+                //Si el retorno fue exitoso, se procede a editar la lista de sushi
                 if (retorno > 0)
                 {
                     try
@@ -126,6 +127,7 @@ namespace Logica
                         int Acumulador = 0;
                         //Por cada item que haya en los sushi de la promocion, se edita en la base de datos.
                         //Se ejecuta hasta que ya no hayan mas items por editar
+                        //En caso de que se este agregando, se verifica que existan y se agregan a la tabla PromocionSushi
                         foreach (Sushi item in this.ListaSushi)
                         {
 
@@ -193,7 +195,7 @@ namespace Logica
         {
             bool r = false;
             try
-            { //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el usuario
+            { //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar la promocion
                 //El procedimiento se encarga de cambiar la columna Activo a 0
 
                 Conexion MiCOnexion = new Conexion();
@@ -225,7 +227,7 @@ namespace Logica
             bool r = false;
             try
             {
-                //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el usuario
+                //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar la promocion
                 //El procedimiento se encarga de cambiar la columna Activo a 1
                 Conexion MiCOnexion = new Conexion();
 
@@ -252,7 +254,7 @@ namespace Logica
         }
 
         public Promocion Consultar(int PIDPromocion)
-        {//Se crea un objeto de tipo Sushi
+        {//Se crea un objeto de tipo Promocion
             //Ademas de que se crea el objeto de tipo conexion y se le da el parametro de ID dado por el usuario
             Promocion r = new Promocion();
             Conexion MiConexion = new Conexion();
@@ -263,8 +265,9 @@ namespace Logica
 
             if (DatosPromocion.Rows.Count > 0)
             {
-                //Si el procedimiento encontro el usuario consultado
-                //Se le asignaran todos los valores al objeto usuario r antes creado y se retorna
+                //Si el procedimiento encontro la proocion consultada
+                //Se le asignaran todos los valores al objeto Promocion r antes creado y se retorna
+                //A demas de agregar todos los sushi a la lista
                 DataRow MiFila = DatosPromocion.Rows[0];
                 r.PromocionID = Convert.ToInt32(MiFila["PromocionID"]);
                 r.Nombre = Convert.ToString(MiFila["Nombre"]);
@@ -301,8 +304,8 @@ namespace Logica
         public DataTable Listar(bool VerActivos = true, string Filtro = "")
         {
             //Se crea el objeto de conexion y se le dan los parametros dados por el usuario los cuales sirven para decir
-            //Si se veran los usuarios activos o inactivos, ademas, de filtrar valores como nombre o user.
-            //Se crea un datatable con los usuarios y se retorna al usuario
+            //Si se veran las promociones activos o inactivos, ademas, de filtrar el valor Nombre
+            //Se crea un datatable con las promociones y se retorna al usuario
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();
             MiConexion.ListadoDeParametros.Add(new SqlParameter("@VerActivos", VerActivos));
@@ -314,8 +317,8 @@ namespace Logica
 
         public bool ConsultarPorID()
         {
-            //La funcion sirve para saber si ya existe un usuario con el ID del usuario que esta ejecutando la funcion.
-            //Si encuentra un usuario con el mismo ID retorna true
+            //La funcion sirve para saber si ya existe una promocion con el ID del usuario que esta ejecutando la funcion.
+            //Si encuentra una promocion con el mismo ID retorna true
             bool R = false;
             Conexion MiConexion = new Conexion();
             MiConexion.ListadoDeParametros.Add(new SqlParameter("@ID", this.PromocionID));
@@ -329,7 +332,7 @@ namespace Logica
 
         public DataTable AsignarEsquemaDetalle()
         {
-            //Esta funcion asigna el esquema necesario para los valores de el formulario gestion de sushi
+            //Esta funcion asigna el esquema necesario para los valores de el formulario gestion de promocion
             //Se ejecuta el procedimiento almacenado y devuelve el esquema creado
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();
@@ -339,7 +342,7 @@ namespace Logica
 
         public DataTable AsignarEsquemaDetalleEliminados()
         {
-            //Esta funcion asigna el esquema necesario para los valores de el formulario gestion de sushi
+            //Esta funcion asigna el esquema necesario para los valores de el formulario gestion de proocion
             //Se ejecuta el procedimiento almacenado y devuelve el esquema creado
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();

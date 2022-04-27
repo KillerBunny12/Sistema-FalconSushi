@@ -28,7 +28,7 @@ namespace FalconSushi.Formularios
         public void LlenarLista(string Filtro = "")
         {
 
-            //Se llena la lista con todos los productos que se encuentren activos y disponibles en el sistema
+            //Se llena la lista con todos los sushi que se encuentren activos y disponibles en el sistema
             //Si se escribio un valor en el cmapo de texto buscar se filtran los resultados
             Logica.Sushi MiSushi = new Logica.Sushi();
 
@@ -71,6 +71,8 @@ namespace FalconSushi.Formularios
 
             if (ValidarDatos())
             {
+                //En casod e validar los datos
+                //Se verifica que no se haya agregado el sushi a la promocion
                 foreach (DataRow item in Locale.ObjetosGlobales.MiFormGestionPromocion.DTListaSushi.Rows)
                 {
                     if (Convert.ToInt32(item["SushiID"]) == Convert.ToInt32(DgvLista.SelectedRows[0].Cells["GCodigo"].Value))
@@ -83,7 +85,8 @@ namespace FalconSushi.Formularios
                 if (!existe)
                 {
 
-
+                    //En caso de que no se haya agregado aun
+                    //Se obtiene los datos del sushi seleccionado y se agrega al datatable
                     DataRow NuevaFila = Locale.ObjetosGlobales.MiFormGestionPromocion.DTListaSushi.NewRow();
                     NuevaFila["SushiID"] = Convert.ToInt32(DgvLista.SelectedRows[0].Cells["GCodigo"].Value);
                     NuevaFila["Nombre"] = DgvLista.SelectedRows[0].Cells["GNombre"].Value.ToString();
@@ -93,6 +96,8 @@ namespace FalconSushi.Formularios
 
                     bool agregando = false;
 
+                    //Se recorre la lista de cola a agregar de la promocion
+                    //Se verifica si el sushi seleccionado ya se encuentra en la lista
                     foreach (int item in Locale.ObjetosGlobales.MiFormGestionPromocion.DatosAgregar)
                     {
                         if (item == Convert.ToInt32(DgvLista.SelectedRows[0].Cells["GCodigo"].Value))
@@ -103,10 +108,15 @@ namespace FalconSushi.Formularios
 
                     if (!agregando)
                     {
+                        //En caso de que el item no se encuentre en la lista
+                        //Se agrega con el codigo
                         Locale.ObjetosGlobales.MiFormGestionPromocion.DatosAgregar.Add(Convert.ToInt32(DgvLista.SelectedRows[0].Cells["GCodigo"].Value));
 
                         foreach (int item in Locale.ObjetosGlobales.MiFormGestionPromocion.DTListaSushiEliminados)
                         {
+                            //Se recorre la lista de cola a aliminar
+                            //En caso de que e sushi seleccionado se encuentre ahi
+                            //Se elimina de la lista
                             if (item == Convert.ToInt32(DgvLista.SelectedRows[0].Cells["GCodigo"].Value))
                             {
                                 Locale.ObjetosGlobales.MiFormGestionPromocion.DTListaSushiEliminados.Remove(item);

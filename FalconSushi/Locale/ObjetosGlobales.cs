@@ -8,6 +8,7 @@ namespace FalconSushi.Locale
 {
     class ObjetosGlobales
     {
+        //Diferentes objetos globales de formularios que seran utilizados en el programa.
         public static Usuario MiUsuarioGlobal = new Usuario();
         public static Formularios.FrmPrincipal MiFormPrincipal = new Formularios.FrmPrincipal();
         public static FrmGestionUsuario MiFormsGestionUsuario;
@@ -22,6 +23,9 @@ namespace FalconSushi.Locale
         public static FrmGestionPedidoAgregarClientr MiFormPedidAgregarcliente;
 
 
+
+        //Metodo de agregar la bitacora a la hora de realizar un mantenimiento
+        //Realizado en objetos globales para tener un acceso mas sencillo.
         public static bool AgregarBitacora(string Detalles)
         {
             bool r = false;

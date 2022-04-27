@@ -18,6 +18,7 @@ namespace Logica
             Activo = true;
         }
 
+        //Funcion para agregar el nuevo objeto Usuario a la base de datos
         public bool Agregar()
         {
             bool r = false;
@@ -172,7 +173,7 @@ namespace Logica
         public int ValidarLogin(string pUser, string pPass)
         {
             int R = 0;
-            //Se obtienen el email y password que el usuario ingreso en el login y se encripta el password.
+            //Se obtienen el User y password que el usuario ingreso en el login y se encripta el password.
             //Estas variables se asignan como parametros para el procedimiento almacenado y se comparan en la base de datos
             //Si el procedimiento encuentra un usuario con el mismo email y password
             //Se retorna el ID del usuario encontrado

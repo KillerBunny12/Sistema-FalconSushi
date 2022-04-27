@@ -28,7 +28,7 @@ namespace FalconSushi.Formularios
         public void LlenarLista(string Filtro = "")
         {
 
-            //Se llena la lista con todos los productos que se encuentren activos y disponibles en el sistema
+            //Se llena la lista con todos los clientes que se encuentren activos y disponibles en el sistema
             //Si se escribio un valor en el cmapo de texto buscar se filtran los resultados
             Logica.Cliente MiCliente = new Logica.Cliente();
 
@@ -72,7 +72,9 @@ namespace FalconSushi.Formularios
 
 
 
-
+                //En caso de validarse los datos
+                //Se obtiene el id del cliente y se consulta
+                //Se agrega el cliente al pedido actual
                 int cod = Convert.ToInt32(DgvLista.SelectedRows[0].Cells["GCodigo"].Value);
 
                 Cliente Micliente = new Cliente();
@@ -97,7 +99,7 @@ namespace FalconSushi.Formularios
         private bool ValidarDatos()
         {
 
-            //Se verifica que se haya seleccionado 1 producto y que se haya solicitado al menos 1 de estos
+            //Se verifica que se haya seleccionado 1 cliente
             if (DgvLista.SelectedRows.Count == 1)
             {
                 return true;

@@ -45,7 +45,7 @@ namespace FalconSushi.Formularios
         private void LlenarLista(bool Activos, string Filtro = "")
         {
 
-            //Se crea un objeto de tipo Usuario y dependiendo si se dio valores para filtrar
+            //Se crea un objeto de tipo ingrediente y dependiendo si se dio valores para filtrar
             //se muestra la tabla con filtro o sin filtro
             Logica.Ingrediente MiIngrediente = new Logica.Ingrediente();
 
@@ -106,22 +106,13 @@ namespace FalconSushi.Formularios
         {
             if (ValidarDatos())
             {
-                //Si los campos son validos se crea un objeto usuario y se le asignan los valores de los campos de texto
+                //Si los campos son validos se crea un objeto ingrediente y se le asignan los valores de los campos de texto
                 //de otra forma se le informa al usuario
                 Logica.Ingrediente MiIngrediente = new Logica.Ingrediente();
 
                 MiIngrediente.Nombre = TxtNombre.Text.Trim();
 
-
-
-
-
-
-
-
-
-
-                //Si todas las pruebas fueron exitosas se agrega el usuario a la base de datos y se limpia el formulario
+                //Si todas las pruebas fueron exitosas se agrega el ingrediente a la base de datos y se limpia el formulario
                 //De otra forma se presentaran los respectivos mensajes de error al usuario
 
                 if (MiIngrediente.Agregar())
@@ -170,14 +161,14 @@ namespace FalconSushi.Formularios
 
 
 
-                //Se verifica que el usuario exista y que en caso de editar el password, este sea valido
+                //Se verifica que el ingrediente exista y que en caso de editar el password, este sea valido
                 if (MiIngrediente.ConsultarPorID())
                 {
 
 
                     if (MiIngrediente.Editar())
                     {
-                        //Si el procedimiento de editar al usuario fue correcto se muestra un mensaje al usuario y se limpian los campos
+                        //Si el procedimiento de editar al ingrediente fue correcto se muestra un mensaje al usuario y se limpian los campos
                         //De otra forma se muestran los respectivos mensajes de error
                         MessageBox.Show("Ingrediente editado correctamente", "Exito!", MessageBoxButtons.OK);
                         Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha editado el ingrediente de ID " + MiIngrediente.IngredienteID);
@@ -216,7 +207,7 @@ namespace FalconSushi.Formularios
             if (ValidarDatos())
             {
 
-                //Se verifican los datos y se crea un objeto de tipo usuario y se le asigna solamente el ID del usuario seleccionado
+                //Se verifican los datos y se crea un objeto de tipo ingrediente y se le asigna solamente el ID del usuario seleccionado
                 Logica.Ingrediente MiIngrediente = new Logica.Ingrediente();
 
                 MiIngrediente.IngredienteID = Convert.ToInt32(TxtCodigo.Text.Trim());
@@ -227,7 +218,7 @@ namespace FalconSushi.Formularios
                     if (FlagActivar)
                     {
 
-                        //Si el usuario esta activando al usuario
+                        //Si el usuario esta activando al ingrediente
                         //Se ejecuta el metodo de activacion
                         if (MiIngrediente.Activar())
                         {
@@ -251,7 +242,7 @@ namespace FalconSushi.Formularios
                         }
                     }
                     else
-                    {//Si el usuario esta desactivando al usuario
+                    {//Si el usuario esta desactivando al ingrediente
                         //Se ejecuta el metodo de desactivacion
                         if (MiIngrediente.Desactivar())
                         {
@@ -299,7 +290,7 @@ namespace FalconSushi.Formularios
         private void CbVerActivos_CheckedChanged(object sender, EventArgs e)
         {
             //AL activar o desactivar el checkbox de ver activos se vuelve a llenar la lista con el respectivo valor
-            //para poder ver los usuarios Activos o inactivos
+            //para poder ver los ingrediente Activos o inactivos
             //Ademas se cambia el nombre del boton eliminar a Activar y desactivar respectivamente
             LlenarLista(CbVerActivos.Checked);
             Limpiar();
@@ -320,7 +311,7 @@ namespace FalconSushi.Formularios
 
         private void DgvLista_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Al seleccionar un item en el DataGrid se obtienen sus valores y se crea un objeto de usuario y se le asignan los valores
+            //Al seleccionar un item en el DataGrid se obtienen sus valores y se crea un objeto de ingrediente y se le asignan los valores
             //a los campos de texto y al checkbox de Activo
             //Ademas de que se activa el boton de editar y eliminar
             DataGridViewRow MiFila = DgvLista.SelectedRows[0];
@@ -339,7 +330,7 @@ namespace FalconSushi.Formularios
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            //Si se ingresa texto al campo de buscar se vuelve a llenar la lista con los usuarios filtrados
+            //Si se ingresa texto al campo de buscar se vuelve a llenar la lista con los ingrediente filtrados
             if (!String.IsNullOrEmpty(TxtBuscar.Text.Trim()) && TxtBuscar.Text.Count() >= 2)
             {
                 LlenarLista(CbVerActivos.Checked, TxtBuscar.Text.Trim());

@@ -16,8 +16,8 @@ namespace Logica
         public DataTable ListarBitacora(bool UltimoMes)
         {
             //Se crea el objeto de conexion y se le dan los parametros dados por el usuario los cuales sirven para decir
-            //Si se veran los usuarios activos o inactivos, ademas, de filtrar valores como nombre o user.
-            //Se crea un datatable con los usuarios y se retorna al usuario
+            //Si se veran las bitacoras del ultimo mes o de todo el sistema
+            //Se crea un datatable con las bitacoras y se retornan al usuario
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();
 

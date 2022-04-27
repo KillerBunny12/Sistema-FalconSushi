@@ -62,7 +62,7 @@ namespace FalconSushi.Formularios
         private void LlenarLista(bool Activos, string Filtro = "")
         {
 
-            //Se crea un objeto de tipo Usuario y dependiendo si se dio valores para filtrar
+            //Se crea un objeto de tipo Promocion y dependiendo si se dio valores para filtrar
             //se muestra la tabla con filtro o sin filtro
             Logica.Promocion MiPropmocion = new Logica.Promocion();
 
@@ -114,7 +114,7 @@ namespace FalconSushi.Formularios
 
                 )
             {
-
+                //Se verifica que se haya escogido al menos 1 sushi para la promocion
                 if (DgvSushi.Rows.Count == 0)
                 {
                     MessageBox.Show("No se han escogido Sushi para la promocion", "Error de validacion", MessageBoxButtons.OK);
@@ -134,6 +134,7 @@ namespace FalconSushi.Formularios
 
         private void TxtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //Se verifica que el campo de texto solo reciba numeros y decimales
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
@@ -150,7 +151,7 @@ namespace FalconSushi.Formularios
         {
             if (ValidarDatos())
             {
-                //Se verifican los campos y se asignan a la variable de compra local
+                //Se verifican los campos y se asignan a la variable de promocion local
                 PromocionLocal = new Logica.Promocion();
                 PromocionLocal.Nombre = TxtNombre.Text.Trim();
 
@@ -162,8 +163,8 @@ namespace FalconSushi.Formularios
                 LlenarDetalles();
                 if (PromocionLocal.Aregar())
                 {
-                    //Si la compra fue exitosa se muestra un mensaje de exito y se procede a la creacion del reporte
-                    //Se crea un documento de reporte y se imprime con todos los valores registrados
+                    //Si la creacion de la promocion fue exitosa se muestra un mensaje de exito y se procede a la creacion de la bitacora
+                    //Se ejecuta el metodo de agregar bitacora en objetos globales con los datos del mantenimiento
                     MessageBox.Show("Promocion agregada correctamente", "Exito!", MessageBoxButtons.OK);
                     Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha agregado la promocion de nombre: " + PromocionLocal.Nombre + " y precio: " + PromocionLocal.Precio);
 
@@ -191,9 +192,9 @@ namespace FalconSushi.Formularios
             //SushiLocal.ListaIngredientes.Clear();
             foreach (DataRow fila in DTListaSushi.Rows)
             {
-                //Por cada producto en la compra
+                //Por cada sushi en la promocion
                 //
-                //Se crea un nuevo objeto de linea de deallte y se le asignan los valores calculados y se agregan a la compra
+                //Se crea un nuevo objeto de sushiy se le asignan los valores calculados y se agregan a la promocion
                 Logica.Sushi MiSushi = new Logica.Sushi();
 
 
@@ -207,13 +208,13 @@ namespace FalconSushi.Formularios
         {
             try
             {
-                //Se abre el form de Compra detalle gestion para poder seleccionar y producto a agregar
+                //Se abre el form de gestion agregar sushi para poder seleccionar un sushi a agregar
                 Form FormBuscarSushi = new Formularios.FrmGestioAgregarSushi();
 
                 DialogResult Resp = FormBuscarSushi.ShowDialog();
 
-                //Si la respuesta fue exitosa y se selecciono producto
-                //Se vuelve a cargar el datatable con los productos seleccionados y se calcula el precio de venta
+                //Si la respuesta fue exitosa y se selecciono sushi
+                //Se vuelve a cargar el datatable con los productos seleccionados.
                 if (Resp == DialogResult.OK)
                 {
                     DgvSushi.DataSource = DTListaSushi;
@@ -234,14 +235,15 @@ namespace FalconSushi.Formularios
             {
                 DataGridViewRow MiFila = DgvSushi.SelectedRows[0];
 
-                //Si se elimina un producto de la compra se obtiene el producto y se elimina del datatable, ademas de aumentar el stock del producto
+                //Si se elimina un sshi de la promocion se obtiene el sushi y se elimina del datatable
 
                 DataRow toDelete = DTListaSushi.Select("SushiID = " + "'" + MiFila.Cells["GCodigoS"].Value.ToString() + "'" + " AND Nombre = " + "'" + MiFila.Cells["GNombreS"].Value.ToString() + "'")[0];
 
                 int SushiRemover = Convert.ToInt32(DgvSushi.SelectedRows[0].Cells["GCodigoS"].Value.ToString());
                 DTListaSushiEliminados.Add(Convert.ToInt32(DgvSushi.SelectedRows[0].Cells["GCodigoS"].Value.ToString()));
                 DTListaSushi.Rows.Remove(toDelete);
-
+                //En caso de encontrarse en cola para agregar
+                //Se elimina el sushi de esta
                 foreach (int item in DatosAgregar)
                 {
                     if (item == SushiRemover)
@@ -250,13 +252,6 @@ namespace FalconSushi.Formularios
                         break;
                     }
                 }
-
-
-
-                //DTListaIngredientesEliminados.Rows.Add(toDelete);
-
-
-                //  DTListaIngredientesEliminados.Rows.Add(toDelete);
 
 
                 DgvSushi.DataSource = DTListaSushi;
@@ -268,7 +263,7 @@ namespace FalconSushi.Formularios
         private void DgvLista_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DatosAgregar.Clear();
-            //Al seleccionar un item en el DataGrid se obtienen sus valores y se crea un objeto de usuario y se le asignan los valores
+            //Al seleccionar un item en el DataGrid se obtienen sus valores y se crea un objeto de promocion y se le asignan los valores
             //a los campos de texto y al checkbox de Activo
             //Ademas de que se activa el boton de editar y eliminar
             DataGridViewRow MiFila = DgvLista.SelectedRows[0];
@@ -291,7 +286,7 @@ namespace FalconSushi.Formularios
             foreach (Sushi item in MiPromocion.ListaSushi)
             {
 
-
+                //Por cada sushi en la promocion, se obtienen sus datos y se agrega al datatable
                 DataRow NuevaFila = DTListaSushi.NewRow();
                 NuevaFila["SushiID"] = item.SushiID;
                 NuevaFila["Nombre"] = item.Nombre;
@@ -315,7 +310,7 @@ namespace FalconSushi.Formularios
             if (ValidarDatos())
             {
 
-                //Si la verificacion de datos fue exitosa se crea un objeto de tipo sushi y se le asignan los valores ingresados por el usuario
+                //Si la verificacion de datos fue exitosa se crea un objeto de tipo promocion y se le asignan los valores ingresados por el usuario
                 Logica.Promocion MiPromocion = new Logica.Promocion();
 
                 MiPromocion.PromocionID = Convert.ToInt32(TxtCodigo.Text.Trim());
@@ -327,7 +322,7 @@ namespace FalconSushi.Formularios
 
 
 
-                //Se eliminan los ingredientes
+                //Se eliminan los sushi en caso de existir
                 foreach (int item2 in DTListaSushiEliminados)
                 {
                     foreach (Sushi item in MiPromocion.ListaSushi)
@@ -362,8 +357,8 @@ namespace FalconSushi.Formularios
 
                 }
 
-                //Se agregan los ingredientes
-
+                //Se agregan los sushi
+                //A la lista de sushi
                 foreach (int item in DatosAgregar)
                 {
                     Sushi MiSushi = new Sushi();
@@ -373,7 +368,7 @@ namespace FalconSushi.Formularios
 
 
 
-                //Se verifica que el sushi exista
+                //Se verifica que la promocion exista
                 if (MiPromocion.ConsultarPorID())
                 {
 
@@ -381,6 +376,7 @@ namespace FalconSushi.Formularios
                     if (MiPromocion.Editar())
                     {
                         //Si el procedimiento de editar al usuario fue correcto se muestra un mensaje al usuario y se limpian los campos
+                        //Y se crea la bitacora
                         //De otra forma se muestran los respectivos mensajes de error
                         MessageBox.Show("Promocion editada correctamente", "Exito!", MessageBoxButtons.OK);
                         Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha editado la promocion de ID " + MiPromocion.PromocionID);
@@ -418,6 +414,9 @@ namespace FalconSushi.Formularios
 
         private void CbVerActivos_CheckedChanged(object sender, EventArgs e)
         {
+            //En caso de darse click al checkbox
+            //Se vuelve a rellenar la lista de promocion
+            //Dependiendo de si desea ver activos o inactivos
             LlenarLista(CbVerActivos.Checked);
             Limpiar();
             DgvLista.ClearSelection();
@@ -437,6 +436,7 @@ namespace FalconSushi.Formularios
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
+            //Si se ingresa texto al campo de buscar se vuelve a llenar la lista con las promociones filtrados
             if (!String.IsNullOrEmpty(TxtBuscar.Text.Trim()) && TxtBuscar.Text.Count() >= 2)
             {
                 LlenarLista(CbVerActivos.Checked, TxtBuscar.Text.Trim());
@@ -467,7 +467,7 @@ namespace FalconSushi.Formularios
             if (ValidarDatos())
             {
 
-                //Se verifican los datos y se crea un objeto de tipo usuario y se le asigna solamente el ID del usuario seleccionado
+                //Se verifican los datos y se crea un objeto de tipo promocion y se le asigna solamente el ID de la promocion seleccionado
                 Logica.Promocion MiPromocion = new Logica.Promocion();
 
                 MiPromocion.PromocionID = Convert.ToInt32(TxtCodigo.Text.Trim());
@@ -478,8 +478,9 @@ namespace FalconSushi.Formularios
                     if (FlagActivar)
                     {
 
-                        //Si el usuario esta activando el sushi
+                        //Si el usuario esta activando la promocion
                         //Se ejecuta el metodo de activacion
+                        //Se ejecuta la bitacora
                         if (MiPromocion.Activar())
                         {
                             MessageBox.Show("Promocion activada correctamente", "Exito!", MessageBoxButtons.OK);
@@ -502,8 +503,9 @@ namespace FalconSushi.Formularios
                         }
                     }
                     else
-                    {//Si el usuario esta desactivando el sushi
+                    {//Si el usuario esta desactivando la promocion
                         //Se ejecuta el metodo de desactivacion
+                        //Se ejecuta la bitacora
                         if (MiPromocion.Desactivar())
                         {
                             MessageBox.Show("Promocion desactivado correctamente", "Exito!", MessageBoxButtons.OK);

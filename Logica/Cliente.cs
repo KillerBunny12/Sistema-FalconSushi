@@ -79,7 +79,7 @@ namespace Logica
                 int retorno = MiCOnexion.DMLUpdateDeleteInsert("SPClienteEditar");
 
 
-                //Si el insert fue exitoso retorna true, de otra forma retorna false y se le informa al usuario
+                //Si el edit fue exitoso retorna true, de otra forma retorna false y se le informa al usuario
                 if (retorno > 0)
                 {
                     r = true;
@@ -98,7 +98,7 @@ namespace Logica
         {
             bool r = false;
             try
-            { //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el usuario
+            { //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el cliente
                 //El procedimiento se encarga de cambiar la columna Activo a 0
 
                 Conexion MiCOnexion = new Conexion();
@@ -130,7 +130,7 @@ namespace Logica
             bool r = false;
             try
             {
-                //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el usuario
+                //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el cliente
                 //El procedimiento se encarga de cambiar la columna Activo a 1
                 Conexion MiCOnexion = new Conexion();
 
@@ -157,7 +157,7 @@ namespace Logica
         }
 
         public Cliente Consultar(int PIDCliente)
-        {//Se crea un objeto de tipo usuario
+        {//Se crea un objeto de tipo Cliente
             //Ademas de que se crea el objeto de tipo conexion y se le da el parametro de ID dado por el usuario
             Cliente r = new Cliente();
             Conexion MiConexion = new Conexion();
@@ -167,8 +167,8 @@ namespace Logica
 
             if (DatosCliente.Rows.Count > 0)
             {
-                //Si el procedimiento encontro el usuario consultado
-                //Se le asignaran todos los valores al objeto usuario r antes creado y se retorna
+                //Si el procedimiento encontro el cliente consultado
+                //Se le asignaran todos los valores al objeto Cliente r antes creado y se retorna
                 DataRow MiFila = DatosCliente.Rows[0];
                 r.ClienteID = Convert.ToInt32(MiFila["ClienteID"]);
                 r.Nombre = Convert.ToString(MiFila["Nombre"]);
@@ -183,8 +183,8 @@ namespace Logica
         public DataTable Listar(bool VerActivos = true, string Filtro = "")
         {
             //Se crea el objeto de conexion y se le dan los parametros dados por el usuario los cuales sirven para decir
-            //Si se veran los usuarios activos o inactivos, ademas, de filtrar valores como nombre o user.
-            //Se crea un datatable con los usuarios y se retorna al usuario
+            //Si se veran los clientes activos o inactivos, ademas, de filtrar el valor Nombre
+            //Se crea un datatable con los clientes y se retorna al usuario
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();
             MiConexion.ListadoDeParametros.Add(new SqlParameter("@VerActivos", VerActivos));
@@ -196,8 +196,8 @@ namespace Logica
 
         public bool ConsultarPorID()
         {
-            //La funcion sirve para saber si ya existe un usuario con el ID del usuario que esta ejecutando la funcion.
-            //Si encuentra un usuario con el mismo ID retorna true
+            //La funcion sirve para saber si ya existe un cliente con el ID del cliente que esta ejecutando la funcion.
+            //Si encuentra un cliente con el mismo ID retorna true
             bool R = false;
             Conexion MiConexion = new Conexion();
             MiConexion.ListadoDeParametros.Add(new SqlParameter("@ID", this.ClienteID));

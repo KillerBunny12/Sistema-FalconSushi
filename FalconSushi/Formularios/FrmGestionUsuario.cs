@@ -34,7 +34,6 @@ namespace FalconSushi.Formularios
         {
 
             //Se limpian todos los campos de texto
-            //Se asigna la seleccion del combobox como -1
             //Se aciva el checkbox de visualizar activos
             //Se asigna el flag de cambio de password en false
             TxtBuscar.Clear();

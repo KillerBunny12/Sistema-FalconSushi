@@ -66,7 +66,7 @@ namespace FalconSushi.Formularios
         private void LlenarLista(bool Activos, string Filtro = "")
         {
 
-            //Se crea un objeto de tipo Usuario y dependiendo si se dio valores para filtrar
+            //Se crea un objeto de tipo Sushi y dependiendo si se dio valores para filtrar
             //se muestra la tabla con filtro o sin filtro
             Logica.Sushi MiSushi = new Logica.Sushi();
 
@@ -117,7 +117,7 @@ namespace FalconSushi.Formularios
 
                 )
             {
-
+                //Se verifica que se haya escogido al menos 1 igrediente para el sushi
                 if (DgvIngredientes.Rows.Count == 0)
                 {
                     MessageBox.Show("No se han escogido ingredientes para el sushi", "Error de validacion", MessageBoxButtons.OK);
@@ -137,7 +137,7 @@ namespace FalconSushi.Formularios
 
         private void TxtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Verifica que lo escrito en el texbox sea un numero
+            // Verifica que lo escrito en el textbox sea un numero
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
@@ -154,7 +154,7 @@ namespace FalconSushi.Formularios
         {
             if (ValidarDatos())
             {
-                //Se verifican los campos y se asignan a la variable de compra local
+                //Se verifican los campos y se asignan a la variable de sushi local
                 SushiLocal = new Sushi();
                 SushiLocal.Nombre = TxtNombre.Text.Trim();
 
@@ -165,8 +165,9 @@ namespace FalconSushi.Formularios
                 LlenarDetalles();
                 if (SushiLocal.Aregar())
                 {
-                    //Si la compra fue exitosa se muestra un mensaje de exito y se procede a la creacion del reporte
-                    //Se crea un documento de reporte y se imprime con todos los valores registrados
+                    //Si la creacion del sushi fue exitosa se muestra un mensaje de exito y se procede a la creacion de la bitacora
+                    //Se ejecuta la funcion de agregar bitacora dentro de los objetos globales con los daots
+                    //Se vuelve allenar la lista y se limpian los campos
                     MessageBox.Show("Sushi agregado correctamente", "Exito!", MessageBoxButtons.OK);
                     Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha agregado el sushi de nombre: " + SushiLocal.Nombre + " y precio: " + SushiLocal.Precio);
 
@@ -195,12 +196,12 @@ namespace FalconSushi.Formularios
 
         private void LlenarDetalles()
         {
-            //SushiLocal.ListaIngredientes.Clear();
+            
             foreach (DataRow fila in DTListaIngredientes.Rows)
             {
-                //Por cada producto en la compra
+                //Por cada Ingrediente seleccionado
                 //
-                //Se crea un nuevo objeto de linea de deallte y se le asignan los valores calculados y se agregan a la compra
+                //Se crea un nuevo objeto ingrediente, se le asignan los valores y se agregan al sushi
                 Logica.Ingrediente MiIngrediente = new Logica.Ingrediente();
 
 
@@ -214,13 +215,13 @@ namespace FalconSushi.Formularios
         {
             try
             {
-                //Se abre el form de Compra detalle gestion para poder seleccionar y producto a agregar
+                //Se abre el form de gestion agregar ingrdiente para poder seleccionar un ingrediente a agregar
                 Form FormBuscarIngrediente = new Formularios.FrmGestionAgregarIngrediente();
 
                 DialogResult Resp = FormBuscarIngrediente.ShowDialog();
 
-                //Si la respuesta fue exitosa y se selecciono producto
-                //Se vuelve a cargar el datatable con los productos seleccionados y se calcula el precio de venta
+                //Si la respuesta fue exitosa y se selecciono ingrediente
+                //Se vuelve a cargar el datatable con los ingredientes seleccionados
                 if (Resp == DialogResult.OK)
                 {
                     DgvIngredientes.DataSource = DTListaIngredientes;
@@ -241,7 +242,8 @@ namespace FalconSushi.Formularios
             {
                 DataGridViewRow MiFila = DgvIngredientes.SelectedRows[0];
 
-                //Si se elimina un producto de la compra se obtiene el producto y se elimina del datatable, ademas de aumentar el stock del producto
+                //Si se elimina un ingrediente del sushi se obtiene el ingrediente
+                //Y se remueve del datatable
 
                 DataRow toDelete = DTListaIngredientes.Select("IngredienteID = " + "'" + MiFila.Cells["GCodigoI"].Value.ToString() + "'" + " AND Nombre = " + "'" + MiFila.Cells["GNombreI"].Value.ToString() + "'")[0];
 
@@ -249,6 +251,7 @@ namespace FalconSushi.Formularios
                 DTListaIngredientesEliminados.Add(Convert.ToInt32(DgvIngredientes.SelectedRows[0].Cells["GCodigoI"].Value.ToString()));
                 DTListaIngredientes.Rows.Remove(toDelete);
 
+                //En caso de que este ingrediente estaba en fila para agregarse al sushi, se elimina de la cola.
                 foreach (int item in DatosAgregar)
                 {
                     if (item == ingredienteremover)
@@ -257,13 +260,6 @@ namespace FalconSushi.Formularios
                         break;
                     }
                 }
-
-
-
-                //DTListaIngredientesEliminados.Rows.Add(toDelete);
-
-
-                //  DTListaIngredientesEliminados.Rows.Add(toDelete);
 
 
                 DgvIngredientes.DataSource = DTListaIngredientes;
@@ -296,7 +292,9 @@ namespace FalconSushi.Formularios
             SushiLocal.ListaIngredientes = MiSushi.ListaIngredientes;
             foreach (Ingrediente item in MiSushi.ListaIngredientes)
             {
-
+                //Por cada ingrediente dentro del sushi
+                //Se obtienen los datos
+                //Y se agrega al datatable
 
                 DataRow NuevaFila = DTListaIngredientes.NewRow();
                 NuevaFila["IngredienteID"] = item.IngredienteID;
@@ -332,6 +330,8 @@ namespace FalconSushi.Formularios
 
 
                 //Se eliminan los ingredientes
+                //Se busca que la lista de ingredienets actual tenga el ingrediente a eliminar
+                //En caso de ser encontrado, se cambia su estado a inactivo y se pone en cola de eliminacion.
                 foreach (int item2 in DTListaIngredientesEliminados)
                 {
                     foreach (Ingrediente item in MiSushi.ListaIngredientes)
@@ -367,7 +367,8 @@ namespace FalconSushi.Formularios
                 }
 
                 //Se agregan los ingredientes
-
+                //Por cada ingrediente en la cola a agregar
+                //Se crea un objeto ingrediente y se obtiene sus datos y se le agrega al sushi
                 foreach (int item in DatosAgregar)
                 {
                     Ingrediente MiIngrediente = new Ingrediente();
@@ -384,7 +385,7 @@ namespace FalconSushi.Formularios
 
                     if (MiSushi.Editar())
                     {
-                        //Si el procedimiento de editar al usuario fue correcto se muestra un mensaje al usuario y se limpian los campos
+                        //Si el procedimiento de editar al sushi fue correcto se muestra un mensaje al usuario y se limpian los campos
                         //De otra forma se muestran los respectivos mensajes de error
                         MessageBox.Show("Sushi editado correctamente", "Exito!", MessageBoxButtons.OK);
                         Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha editado el sushi de ID " + MiSushi.SushiID);
@@ -422,6 +423,9 @@ namespace FalconSushi.Formularios
 
         private void CbVerActivos_CheckedChanged(object sender, EventArgs e)
         {
+            //En caso de darse click al checkbox
+            //Se vuelve a rellenar la lista de sushi
+            //Dependiendo de si desea ver activos o inactivos
             LlenarLista(CbVerActivos.Checked);
             Limpiar();
             DgvLista.ClearSelection();
@@ -441,6 +445,7 @@ namespace FalconSushi.Formularios
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
+            //Si se ingresa texto al campo de buscar se vuelve a llenar la lista con los sushi filtrados
             if (!String.IsNullOrEmpty(TxtBuscar.Text.Trim()) && TxtBuscar.Text.Count() >= 2)
             {
                 LlenarLista(CbVerActivos.Checked, TxtBuscar.Text.Trim());
@@ -469,7 +474,7 @@ namespace FalconSushi.Formularios
             if (ValidarDatos())
             {
 
-                //Se verifican los datos y se crea un objeto de tipo usuario y se le asigna solamente el ID del usuario seleccionado
+                //Se verifican los datos y se crea un objeto de tipo sshi y se le asigna solamente el ID del sushi seleccionado
                 Logica.Sushi MiSushi = new Logica.Sushi();
 
                 MiSushi.SushiID = Convert.ToInt32(TxtCodigo.Text.Trim());

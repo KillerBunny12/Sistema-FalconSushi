@@ -23,6 +23,11 @@ namespace FalconSushi.Formularios
 
         private void BtnEntrar_Click(object sender, EventArgs e)
         {
+            //Al darle click al boton ingresar
+            //El sistema crea un objeto Usuario y se le asignan los datos
+            //Se ejecuta el metodo de validarLogin y en caso de ser valido
+            //Se guarda al usuario en los objetos globales y se procede a ingresar al menu prinicpal
+            //En otro caso, se le informa al usuario
             Logica.Usuario MiUsuario = new Logica.Usuario();
             if (!String.IsNullOrEmpty(TxtUser.Text.Trim()) && !String.IsNullOrEmpty(TxtPass.Text.Trim()))
             {
@@ -51,11 +56,14 @@ namespace FalconSushi.Formularios
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
+            //Al darle click al boton salir, se termina la ejecucion del programa
             Application.Exit();
         }
 
         private void BtnAdmin_Click(object sender, EventArgs e)
         {
+            //Boton de administrador que sirve para ingresar al sistema sin loguearse, este solo es utulizado para depuracion
+            //Y no se encuentra disponible en el sistema final.
             Logica.Usuario Dummy = new Logica.Usuario();
             Locale.ObjetosGlobales.MiUsuarioGlobal = Dummy.Consultar(1);
             Locale.ObjetosGlobales.MiFormPrincipal = new FrmPrincipal();

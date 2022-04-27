@@ -27,7 +27,7 @@ namespace FalconSushi.Formularios
         public void LlenarLista(string Filtro = "")
         {
 
-            //Se llena la lista con todos los productos que se encuentren activos y disponibles en el sistema
+            //Se llena la lista con todos las promociones que se encuentren activos y disponibles en el sistema
             //Si se escribio un valor en el cmapo de texto buscar se filtran los resultados
             Logica.Promocion MiPromocion = new Logica.Promocion();
 
@@ -56,6 +56,9 @@ namespace FalconSushi.Formularios
 
             if (ValidarDatos())
             {
+                //En caso de validarse los datos
+                //Se recorre la lista de promociones
+                //Para verificar de que la promocion seleccionada aun no haya sido agregada
                 foreach (DataRow item in Locale.ObjetosGlobales.MiFormGestionPedido.DTListaPromocion.Rows)
                 {
                     if (Convert.ToInt32(item["PromocionID"]) == Convert.ToInt32(DgvLista.SelectedRows[0].Cells["GCodigo"].Value))
@@ -67,7 +70,9 @@ namespace FalconSushi.Formularios
 
                 if (!existe)
                 {
-
+                    //En caso de no haberse agregado aun
+                    //Se obtiene los datos de la promocion
+                    //Se agrega al datatable
                     int codprod = Convert.ToInt32(DgvLista.SelectedRows[0].Cells["GCodigo"].Value);
 
                     DataRow NuevaFila = Locale.ObjetosGlobales.MiFormGestionPedido.DTListaPromocion.NewRow();
@@ -100,7 +105,7 @@ namespace FalconSushi.Formularios
         private bool ValidarDatos()
         {
             bool r = false;
-            //Se verifica que se haya seleccionado 1 producto y que se haya solicitado al menos 1 de estos
+            //Se verifica que se haya seleccionado 1 promocion y que se haya solicitado al menos 1 de estos
             if (DgvLista.SelectedRows.Count == 1 && NudCantidad.Value > 0)
             {
                 r = true;

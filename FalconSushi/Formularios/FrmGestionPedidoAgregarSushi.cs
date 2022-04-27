@@ -27,7 +27,7 @@ namespace FalconSushi.Formularios
         public void LlenarLista(string Filtro = "")
         {
 
-            //Se llena la lista con todos los productos que se encuentren activos y disponibles en el sistema
+            //Se llena la lista con todos los sushi que se encuentren activos y disponibles en el sistema
             //Si se escribio un valor en el cmapo de texto buscar se filtran los resultados
             Logica.Sushi MiSushi = new Logica.Sushi();
 
@@ -70,6 +70,9 @@ namespace FalconSushi.Formularios
 
             if (ValidarDatos())
             {
+                //En casod e validar los datos
+                //Se recorren todos los sushi agregados al pedido
+                //Y se verifica que el sushi seleccionado no se haya agregado aun
                 foreach (DataRow item in Locale.ObjetosGlobales.MiFormGestionPedido.DTListaSushi.Rows)
                 {
                     if (Convert.ToInt32(item["SushiID"]) == Convert.ToInt32(DgvLista.SelectedRows[0].Cells["GCodigo"].Value))
@@ -81,7 +84,9 @@ namespace FalconSushi.Formularios
 
                 if (!existe)
                 {
-
+                    //En caso de no haberse agregado aun
+                    //Se obtienen los datos del sushi
+                    //Se agrega al datatable
                     int codprod = Convert.ToInt32(DgvLista.SelectedRows[0].Cells["GCodigo"].Value);
 
                     DataRow NuevaFila = Locale.ObjetosGlobales.MiFormGestionPedido.DTListaSushi.NewRow();
@@ -114,7 +119,7 @@ namespace FalconSushi.Formularios
         private bool ValidarDatos()
         {
             bool r = false;
-            //Se verifica que se haya seleccionado 1 producto y que se haya solicitado al menos 1 de estos
+            //Se verifica que se haya seleccionado 1 sushi y que se haya solicitado al menos 1 de estos
             if (DgvLista.SelectedRows.Count == 1 && NudCantidad.Value > 0)
             {
                 r = true;

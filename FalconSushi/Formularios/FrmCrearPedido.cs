@@ -32,6 +32,7 @@ namespace FalconSushi.Formularios
         private void FrmCrearPedido_Load(object sender, EventArgs e)
         {
             MdiParent = Locale.ObjetosGlobales.MiFormPrincipal;
+            //Se asigna el usuario global como el facturador
             LblUsuarioRegistra.Text = "Compra registrada por " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre;
             Limpiar();
             GenerarNumeroFactura();
@@ -40,10 +41,12 @@ namespace FalconSushi.Formularios
 
         private void GenerarNumeroFactura()
         {
+            //Se genera un numero de factura aleatorio que comienza con "FS-"
+            //Y se le asigna al campo de texto
             string nf = "FS-";
 
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var stringChars = new char[5];
+            var stringChars = new char[10];
             var random = new Random();
 
             for (int i = 0; i < stringChars.Length; i++)
@@ -59,6 +62,7 @@ namespace FalconSushi.Formularios
         private void Limpiar()
         {
             //Se limpian todos los campos
+            //Se genera un nuevo numero de actura
             //Se carga el esquema de compra al DataTable y se carga en el DataGrid
             DtpFecha.Value = DateTime.Now.Date;
             TxtNumeroFactura.Clear();
@@ -80,13 +84,13 @@ namespace FalconSushi.Formularios
         {
             try
             {
-                //Se abre el form de Compra detalle gestion para poder seleccionar y producto a agregar
+                //Se abre el form de gestion pedido agregar sushi para poder seleccionar un sushi a agregar
                 Form FormBuscarSushi = new Formularios.FrmGestionPedidoAgregarSushi();
 
                 DialogResult Resp = FormBuscarSushi.ShowDialog();
 
-                //Si la respuesta fue exitosa y se selecciono producto
-                //Se vuelve a cargar el datatable con los productos seleccionados y se calcula el precio de venta
+                //Si la respuesta fue exitosa y se selecciono sushi
+                //Se vuelve a cargar el datatable con el sushi seleccionados y se calcula el precio de venta
                 if (Resp == DialogResult.OK)
                 {
                     DgvListaSushi.DataSource = DTListaSushi;
@@ -106,21 +110,22 @@ namespace FalconSushi.Formularios
         {
             decimal r = 0;
 
-            //Se verifica que haya al menos 1 producto en la compra
+            //Se verifica que haya al menos 1 sushi en la compra
             if (DTListaSushi.Rows.Count > 0)
             {
                 foreach (DataRow item in DTListaSushi.Rows)
                 {
-                    //Por cada producto seleccionado se calcula el precio total
+                    //Por cada sushi seleccionado se calcula el precio total
                     r += Convert.ToDecimal(item["Cantidad"]) * Convert.ToDecimal(item["Precio"]);
                 }
             }
 
+            //Se verifica que haya al menos 1 promocion en la compra
             if (DTListaPromocion.Rows.Count > 0)
             {
                 foreach (DataRow item in DTListaPromocion.Rows)
                 {
-                    //Por cada producto seleccionado se calcula el precio total
+                    //Por cada promocion seleccionado se calcula el precio total
                     r += Convert.ToDecimal(item["Cantidad"]) * Convert.ToDecimal(item["Precio"]);
                 }
             }
@@ -129,6 +134,8 @@ namespace FalconSushi.Formularios
 
         private void DtpFecha_ValueChanged(object sender, EventArgs e)
         {
+
+            //Se verifica que la fecha no sea mayor a la actual
             if (DtpFecha.Value.Date > DateTime.Now.Date)
             {
                 MessageBox.Show("La fecha del pedido no puede ser mayor a la fecha actual", "Error de validacion", MessageBoxButtons.OK);
@@ -142,13 +149,13 @@ namespace FalconSushi.Formularios
         {
             try
             {
-                //Se abre el form de Compra detalle gestion para poder seleccionar y producto a agregar
+                //Se abre el form de gestion pedido agregar promocion para poder seleccionar una promocion a agregar
                 Form FormBuscarPromocion = new Formularios.FrmGestionPedidoAgregarPromocion();
 
                 DialogResult Resp = FormBuscarPromocion.ShowDialog();
 
-                //Si la respuesta fue exitosa y se selecciono producto
-                //Se vuelve a cargar el datatable con los productos seleccionados y se calcula el precio de venta
+                //Si la respuesta fue exitosa y se selecciono promocion
+                //Se vuelve a cargar el datatable con la promocion seleccionado y se calcula el precio de venta
                 if (Resp == DialogResult.OK)
                 {
                     DgvListaPromocion.DataSource = DTListaPromocion;
@@ -184,6 +191,8 @@ namespace FalconSushi.Formularios
 
                 MiPedidoLocal.Total = Convert.ToDecimal(Totalizar());
 
+                //En caso de haber seleccionado un cliente, se asigna el tipo de compra con cliente
+                //En otro caso, el cliente sera anonimo
                 if (MiClienteLocal != null)
                 {
                     MiPedidoLocal.cliente = MiClienteLocal;
@@ -198,8 +207,8 @@ namespace FalconSushi.Formularios
                 LlenarDetalles();
                 if (MiPedidoLocal.Agregar())
                 {
-                    //Si la compra fue exitosa se muestra un mensaje de exito y se procede a la creacion del reporte
-                    //Se crea un documento de reporte y se imprime con todos los valores registrados
+                    //Si la compra fue exitosa se muestra un mensaje de exito y se procede a la creacion de la bitacora
+                    //Se crea la bitacora con los datos de la compra creada
                     MessageBox.Show("Se ha creado la compra correctamente", "Exito", MessageBoxButtons.OK);
                     Locale.ObjetosGlobales.AgregarBitacora("El usuario: " + Locale.ObjetosGlobales.MiUsuarioGlobal.Nombre + " ha creado la compra con el numero de factura " + MiPedidoLocal.NumeroFctura);
 
@@ -227,9 +236,11 @@ namespace FalconSushi.Formularios
         {
             foreach (DataRow fila in DTListaSushi.Rows)
             {
-                //Por cada producto en la compra
+                //Por cada sushi en la compra
                 //
                 //Se crea un nuevo objeto de linea de deallte y se le asignan los valores calculados y se agregan a la compra
+                //Se le asignan los datos del sushi
+                //Se asigna la promocion como null
                 Sushi MiSushi = new Sushi();
                 Logica.PedidoDetalle MiDetalle = new Logica.PedidoDetalle();
                 MiDetalle.promocion = null;
@@ -243,9 +254,11 @@ namespace FalconSushi.Formularios
 
             foreach (DataRow fila in DTListaPromocion.Rows)
             {
-                //Por cada producto en la compra
+                //Por cada promocion en la compra
                 //
                 //Se crea un nuevo objeto de linea de deallte y se le asignan los valores calculados y se agregan a la compra
+                //Se le asignan los datos d ela promocion
+                //Se asigna el sushi como null
                 Promocion miPromocion = new Promocion();
                 Logica.PedidoDetalle MiDetalle = new Logica.PedidoDetalle();
                 MiDetalle.sushi = null;
@@ -262,6 +275,7 @@ namespace FalconSushi.Formularios
         {
             bool r = false;
             //Se verifica que la fecha no sea mayor a la actual ademas de que los campos de texto no esten vacios
+            //Se verifica que se haya seleccionado al menos 1 sushi O Promocion
             //De otra forma, se muestran los mensajes de error correspondientes
             if (DtpFecha.Value.Date <= DateTime.Now.Date
 
@@ -302,15 +316,16 @@ namespace FalconSushi.Formularios
         {
             if (CBCliente.Checked)
             {
+                //En caso de darle click al check de usar cliente
                 try
                 {
-                    //Se abre el form de Compra detalle gestion para poder seleccionar y producto a agregar
+                    //Se abre el form de gestion pedido agregar cliente para poder seleccionar un cliente para el pedido
                     Locale.ObjetosGlobales.MiFormPedidAgregarcliente = new Formularios.FrmGestionPedidoAgregarClientr();
 
                     DialogResult Resp = Locale.ObjetosGlobales.MiFormPedidAgregarcliente.ShowDialog();
 
-                    //Si la respuesta fue exitosa y se selecciono producto
-                    //Se vuelve a cargar el datatable con los productos seleccionados y se calcula el precio de venta
+                    //Si la respuesta fue exitosa y se selecciono cliente
+                    //Se asigna el campo de texto con el nombre del cliente
                     if (Resp == DialogResult.OK)
                     {
                         TxtCliente.Text = MiClienteLocal.Nombre;
@@ -329,6 +344,9 @@ namespace FalconSushi.Formularios
             }
             else
             {
+                //En caso de que se desactive la opcion
+                //Se remueve el cliente
+                //Y el campo de texto cambia a Anonimo
                 MiClienteLocal = null;
                 TxtCliente.Text = "Anonimo";
             }
@@ -339,8 +357,9 @@ namespace FalconSushi.Formularios
             if (DgvListaSushi.SelectedRows.Count == 1)
             {
                 DataGridViewRow MiFila = DgvListaSushi.SelectedRows[0];
-
-                //Si se elimina un producto de la compra se obtiene el producto y se elimina del datatable, ademas de aumentar el stock del producto
+                //En caso de haberse seleccionado 1 sushi
+                //Si se elimina un sushi de la compra se obtiene el sushi y se elimina del datatable
+                //Se vuelve a calcular el total del pedido
 
                 DataRow toDelete = DTListaSushi.Select("SushiID = " + MiFila.Cells["GCodigo"].Value.ToString())[0];
                 DTListaSushi.Rows.Remove(toDelete);
@@ -357,7 +376,9 @@ namespace FalconSushi.Formularios
             {
                 DataGridViewRow MiFila = DgvListaPromocion.SelectedRows[0];
 
-                //Si se elimina un producto de la compra se obtiene el producto y se elimina del datatable, ademas de aumentar el stock del producto
+                //En caso de haberse seleccionado 1 promocion
+                //Si se elimina una promocion de la compra se obtiene la promocion y se elimina del datatable
+                //Se vuelve a calcular el total del pedido
 
                 DataRow toDelete = DTListaPromocion.Select("PromocionID = " + MiFila.Cells["GCodigo"].Value.ToString())[0];
                 DTListaPromocion.Rows.Remove(toDelete);

@@ -113,8 +113,8 @@ namespace Logica
         public DataTable Listar(bool VerActivos = true, string Filtro = "")
         {
             //Se crea el objeto de conexion y se le dan los parametros dados por el usuario los cuales sirven para decir
-            //Si se veran los usuarios activos o inactivos, ademas, de filtrar valores como nombre o user.
-            //Se crea un datatable con los usuarios y se retorna al usuario
+            //Si se veran los pedidos activos o inactivos, ademas, de filtrar valores como fecha del pedido o nombre del cliente o nombre del empleado
+            //Se crea un datatable con los pedidos y se retorna al usuario
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();
             MiConexion.ListadoDeParametros.Add(new SqlParameter("@VerActivos", VerActivos));
@@ -125,7 +125,7 @@ namespace Logica
         }
 
         public Pedido Consultar(int PIDPedido)
-        {//Se crea un objeto de tipo Sushi
+        {//Se crea un objeto de tipo Pedido
             //Ademas de que se crea el objeto de tipo conexion y se le da el parametro de ID dado por el usuario
             Pedido r = new Pedido();
             Conexion MiConexion = new Conexion();
@@ -136,8 +136,9 @@ namespace Logica
 
             if (DatosPedido.Rows.Count > 0)
             {
-                //Si el procedimiento encontro el usuario consultado
-                //Se le asignaran todos los valores al objeto usuario r antes creado y se retorna
+                //Si el procedimiento encontro el pedido consultado
+                //Se le asignaran todos los valores al objeto Pedido r antes creado y se retorna
+                //Ademas se asignan todos los detalles a la lista
                 DataRow MiFila = DatosPedido.Rows[0];
                 r.PedidoID = Convert.ToInt32(MiFila["PedidoID"]);
                 r.NumeroFctura = Convert.ToString(MiFila["NumeroFactura"]);
@@ -172,8 +173,8 @@ namespace Logica
 
         public bool ConsultarPorID()
         {
-            //La funcion sirve para saber si ya existe un usuario con el ID del usuario que esta ejecutando la funcion.
-            //Si encuentra un usuario con el mismo ID retorna true
+            //La funcion sirve para saber si ya existe un Pedido con el ID del pedido que esta ejecutando la funcion.
+            //Si encuentra un pedido con el mismo ID retorna true
             bool R = false;
             Conexion MiConexion = new Conexion();
             MiConexion.ListadoDeParametros.Add(new SqlParameter("@ID", this.PedidoID));
@@ -187,8 +188,8 @@ namespace Logica
 
         public bool ConsultarPorNumeroFactura()
         {
-            //La funcion sirve para saber si ya existe un usuario con el ID del usuario que esta ejecutando la funcion.
-            //Si encuentra un usuario con el mismo ID retorna true
+            //La funcion sirve para saber si ya existe un pedido con el Numero de factura del pedido que esta ejecutando la funcion.
+            //Si encuentra un pedido con el mismo numero de factura retorna true
             bool R = false;
             Conexion MiConexion = new Conexion();
             MiConexion.ListadoDeParametros.Add(new SqlParameter("@NumeroFactura", this.NumeroFctura));
@@ -205,7 +206,7 @@ namespace Logica
         {
             bool r = false;
             try
-            { //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el usuario
+            { //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el pedido
                 //El procedimiento se encarga de cambiar la columna Activo a 0
 
                 Conexion MiCOnexion = new Conexion();
@@ -236,7 +237,7 @@ namespace Logica
         {
             bool r = false;
             try
-            { //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el usuario
+            { //Se crea el objeto de tipo conexion y se le da el parametro de ID el cual servira para identificar el pedido
                 //El procedimiento se encarga de cambiar la columna Activo a 0
 
                 Conexion MiCOnexion = new Conexion();
@@ -267,6 +268,7 @@ namespace Logica
         public DataTable AsignarEsquemaSushi()
         {
             //Esta funcion asigna el esquema necesario para los valores de el formulario gestion de compras
+            //Para los detalles de los sushi
             //Se ejecuta el procedimiento almacenado y devuelve el esquema creado
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();
@@ -277,6 +279,7 @@ namespace Logica
         public DataTable AsignarEsquemaPromocion()
         {
             //Esta funcion asigna el esquema necesario para los valores de el formulario gestion de compras
+            //Para los detalles de las promociones
             //Se ejecuta el procedimiento almacenado y devuelve el esquema creado
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();
@@ -287,6 +290,7 @@ namespace Logica
         public DataTable AsignarEsquemaDetalles()
         {
             //Esta funcion asigna el esquema necesario para los valores de el formulario gestion de compras
+            //Para los datos del pedidodetalle
             //Se ejecuta el procedimiento almacenado y devuelve el esquema creado
             DataTable r = new DataTable();
             Conexion MiConexion = new Conexion();

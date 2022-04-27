@@ -19,7 +19,8 @@ namespace FalconSushi.Formularios
 
         private void FrmBitacora_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'falconSushiDataSet12.SPListarBitacoraMes' table. You can move, or remove it, as needed.
+          //Al cargar el form
+          //Se llena la lita por defecto mostrando solo el ultimo mes
             this.sPListarBitacoraMesTableAdapter.Fill(this.falconSushiDataSet12.SPListarBitacoraMes);
             MdiParent = Locale.ObjetosGlobales.MiFormPrincipal;
 
@@ -30,7 +31,8 @@ namespace FalconSushi.Formularios
 
         public void LlenarLista(bool VerUltimoMes)
         {
-
+            //Se llena la lista
+            //Y se le asignan a los datagrid
 
             DTListaBitacora.Clear();
             DTListaBitacora = MiBitacora.ListarBitacora(VerUltimoMes);
@@ -40,6 +42,8 @@ namespace FalconSushi.Formularios
 
         private void CbVerUltimoMes_CheckedChanged(object sender, EventArgs e)
         {
+            //En caso de darle click al checkbox, se cambia el tipo de visualizacion
+            //de la bitacora
             VerUltimoMes = CbVerUltimoMes.Checked;
             LlenarLista(CbVerUltimoMes.Checked);
         }
